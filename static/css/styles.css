@@ -6,6 +6,17 @@
     font-style: normal;
 }
 
+[data-aos] {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  [data-aos^="fade-"],
+  [data-aos^="slide-"] {
+    max-width: 100%;
+    will-change: transform, opacity;
+  }
+
 *,
 *::before,
 *::after {
@@ -71,6 +82,16 @@ iframe {
   height: auto;
   display: block;
 }
+
+blockquote {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #38bdf8;
+    padding: 1rem;
+    font-style: italic;
+  }
+  ul.list-unstyled li {
+    margin-bottom: 0.5rem;
+  }
 
 /* ---- Typography ---- */
 h1 {
@@ -262,6 +283,10 @@ section {
     transition: all 0.3s ease !important;
     padding: 10px !important;
     font-size: 20px !important;
+  }
+
+  #btn-phone {
+    width: 50% !important;
   }
 
   .btn:hover {
