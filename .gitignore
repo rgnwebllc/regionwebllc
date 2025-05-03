@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Django-related
+*.log
+*.pot
+*.pyc
+*.pyo
+db.sqlite3
+instance/
+media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# OS-related
+.DS_Store
+Thumbs.db
