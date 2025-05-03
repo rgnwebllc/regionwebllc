@@ -17,6 +17,7 @@ db.sqlite3
 instance/
 media/
 staticfiles/
+/staticfiles/
 
 # VS Code
 .vscode/
