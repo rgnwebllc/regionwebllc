@@ -4,6 +4,8 @@ from django.contrib import messages
 from .forms import SignUpForm
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -16,6 +18,8 @@ def signup_view(request):
     return render(request, "registration/signup.html", {"form": form})
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("home")
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
