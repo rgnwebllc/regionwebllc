@@ -30,4 +30,5 @@ node_modules/
 
 # OS-related
 .DS_Store
-Thumbs.db
+Thumbs.dbsendgrid.env
+sendgrid.env

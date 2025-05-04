@@ -66,7 +66,7 @@
                     <img src="#" class="img-fluid rounded" id="work-img" alt="Project 3"
                         onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
                 </div>
-            </div>            
+            </div>
             <a href="#" class="btn btn-primary mt-3">View Full Portfolio</a>
         </div>
     </div>
@@ -120,6 +120,16 @@
             <h2 class="text-center mb-3">Let's Work Together</h2>
             <p class="text-center mb-4">Need a new website or redesign? We’d love to help.</p>
 
+            {% if messages %}
+            <div class="w-100 mb-3" id="message-container">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} text-center" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <form class="w-100" style="max-width: 600px;" method="POST" action="#">
                 {% csrf_token %}
                 <div class="mb-3">
@@ -132,17 +142,53 @@
                         required>
                 </div>
                 <div class="mb-3">
+                    <label for="phone" class="form-label" id="form-label">Your Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="(219)555-5555" required>
+                </div>
+                <div class="mb-3">
                     <label for="message" class="form-label" id="form-label">Message</label>
                     <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your Message."
                         required></textarea>
                 </div>
                 <button type="submit" class="btn btn-success">Send Message</button>
-            </form><hr style="border: none; height: 4px; background-color: #475569; width: 100%;">
+            </form>
+            <hr style="border: none; height: 4px; background-color: #475569; width: 100%;">
             <h1>Or</h1><br>
             <a class="btn" id="btn-phone" href="tel:+12195881104">Call</a><br>
             <a class="btn" id="btn-phone" href="sms:+12195881104">Text</a>
         </div>
     </div>
 </section>
+
+<script>
+    document.getElementById('phone').addEventListener('input', function (e) {
+        let input = e.target.value.replace(/\D/g, ''); // remove non-digits
+        if (input.length > 10) input = input.slice(0, 10);
+
+        let formatted = input;
+        if (input.length > 6) {
+            formatted = `(${input.slice(0, 3)})${input.slice(3, 6)}-${input.slice(6)}`;
+        } else if (input.length > 3) {
+            formatted = `(${input.slice(0, 3)})${input.slice(3)}`;
+        } else if (input.length > 0) {
+            formatted = `(${input}`;
+        }
+
+        e.target.value = formatted;
+    });
+</script>
+
+<script>
+    // Auto-hide messages after 5 seconds
+    setTimeout(() => {
+      const msg = document.getElementById('message-container');
+      if (msg) {
+        msg.style.transition = 'opacity 0.5s ease';
+        msg.style.opacity = '0';
+        setTimeout(() => msg.remove(), 500); // Remove after fade
+      }
+    }, 5000);
+  </script>
+
 
 {% endblock %}

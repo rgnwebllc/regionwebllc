@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing - RegionWeb LLC{% endblock %}
+
+{% block content %}
+<section class="our-work-section">
+    <div class="our-work-bg">
+        <div class="container d-flex flex-column align-items-center" id="home-cont">
+            <h2 class="text-center mb-4" data-aos="fade-in" data-aos-duration="1500">Compare Plans</h2>
+            <p class="text-center mb-5" data-aos="fade-in" data-aos-delay="200">
+                Choose the plan that fits your needs and budget.
+            </p>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-sm-6 col-12 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="ribbon-wrapper h-100 d-flex flex-column">
+                      <div class="ribbon">Starter</div>
+                      <div id="price-card" class="card h-100 text-center">
+                        <div id="card-body" class="card-body">
+                          <h5 class="card-title">Monthly</h5>
+                          <h1>$200/mo</h1>
+                          <p class="text small mt-2">Cancel anytime. Great for short-term or trial projects.</p>
+                          <ul class="list-unstyled mt-3 mb-4">
+                            <li>✔ Custom Website</li>
+                            <li>✔ Monthly Updates</li>
+                            <li>✔ Email Support</li>
+                            <li>✔ Free Redesign (1x/year)</li>
+                          </ul>
+                          <a href="{% url 'home' %}#contact" class="btn btn-primary">Get Started</a>
+                          <p class="small mt-1"></p>
+                          <p class="text-center mt-4" style="font-size: 0.85rem;">
+                            No hidden fees. Easy setup in 24–48 hours. Need help choosing a plan? <a href="#" class="text-info">Contact us for a free consultation.</a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-6 col-12 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="ribbon-wrapper h-100 d-flex flex-column">
+                        <div id="price-card" class="card h-100 text-center">
+                            <div id="card-body" class="card-body">
+                                <h5 class="card-title">Semi-Annually</h5>
+                                <h1>$1080</h1>
+                                <p class="text small mt-2">Save 10% vs monthly. Ideal for growing businesses.</p>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>✔ Custom Website</li>
+                                    <li>✔ Monthly Updates</li>
+                                    <li>✔ Priority Support</li>
+                                    <li>✔ Free Redesign (1x/year)</li>
+                                </ul>
+                                <a href="{% url 'home' %}#contact" class="btn btn-primary">Get Started</a>
+                                <p class="small mt-1"></p>
+                                <p class="text-center mt-4" style="font-size: 0.85rem;">
+                                  No hidden fees. Easy setup in 24–48 hours.   Need help choosing a plan? <a href="#contact" class="text-info">Contact us for a free consultation.</a>
+                                  </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 col-12 mb-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="ribbon-wrapper h-100 d-flex flex-column">
+                        <div class="ribbon best-value"><b>Best Value</b><br>Only $160/mo</div>
+                        <div id="price-card" class="card h-100 text-center">
+                            <div id="card-body" class="card-body">
+                                <h5 class="card-title">Annually</h5>
+                                <h1>$1920</h1>
+                                <p class="text small mt-2">Best savings. Includes a free redesign each year.</p>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>✔ Custom Website</li>
+                                    <li>✔ Monthly Updates</li>
+                                    <li>✔ VIP Support</li>
+                                    <li>✔ Free Redesign (1x/year)</li>
+                                </ul>
+                                <a href="{% url 'home' %}#contact" class="btn btn-primary">Get Started</a>
+                                <p class="small mt-1"></p>
+                                <p class="text-center mt-4" style="font-size: 0.85rem;">
+                                  No hidden fees. Easy setup in 24–48 hours.   Need help choosing a plan? <a href="#contact" class="text-info">Contact us for a free consultation.</a>
+                                  </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

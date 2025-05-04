@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Portfolio - RegionWeb LLC{% endblock %}
+
+{% block content %}
+<section class="our-work-section">
+    <div class="our-work-bg">
+        <div class="container d-flex flex-column" id="home-cont">
+            <h2 class="text-center mb-4" data-aos="fade-in" data-aos-duration="1500">Our Portfolio</h2>
+            <p class="text-center mb-5" data-aos="fade-in" data-aos-delay="200">
+                Browse some of the websites we've built for our amazing clients.
+            </p>
+
+            <div class="row text-center justify-content-center">
+                {% for project in projects %}
+                <div class="col-12 col-sm-6 col-md-4 mb-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'200' }}">
+                    <div class="card h-100">
+                        <img src="{{ project.image_url }}" onerror="this.onerror=null;this.src='{% static 'images/placeholder.png' %}'" class="card-img-top img-fluid rounded" alt="{{ project.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description }}</p>
+                            {% if project.url %}
+                                <a href="{{ project.url }}" class="btn btn-outline-light" target="_blank">View Site</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

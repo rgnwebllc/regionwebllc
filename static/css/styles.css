@@ -188,6 +188,60 @@ blockquote {
     margin-bottom: 6px !important;
     font-weight: 500 !important;
   }
+
+  .ribbon-wrapper {
+    position: relative;
+  }
+  
+  .ribbon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    background: #38bdf8; /* default ribbon color */
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 1;
+    border-radius: 0 0.25rem 0.25rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  /* Optional: Highlighted ribbon */
+  .ribbon.best-value {
+    background: #facc15;
+    color: #1e293b;
+    left: -10px;
+  }
+
+  #card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  #price-card{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  .alert {
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+  }
+  
+  .alert-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+  }
+  
+  .alert-danger,
+  .alert-error {
+    background-color: #f8d7da;
+    color: #842029;
+  }
 /* ---- Typography ---- */
 h1 {
     font-size: 1.5rem;
