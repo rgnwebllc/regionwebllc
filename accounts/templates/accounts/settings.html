@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Account Settings - Region Web{% endblock %}
+
+{% block content %}
+<br>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4 shadow" style="width: 100%; max-width: 700px; border: 1px solid #475569;">
+
+    <h2 class="mb-4 text-white">Account Settings</h2>
+
+    <!-- Profile Overview -->
+    <div class="d-flex align-items-center mb-4">
+        <img src="{% static 'images/avatar.png' %}" class="rounded-circle me-3" style="width: 60px; height: 60px;">
+        <div>
+            <h5 class="mb-0 text-white">{{ user.username }}</h5>
+            <small class="text-white">{{ user.email }}</small>
+        </div>
+    </div>
+
+    <!-- Profile Edit Form -->
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="full_name" class="form-label text-white">Full Name</label>
+            <input type="text" name="full_name" id="full_name" class="form-control" value="{{ user.full_name }}">
+        </div>
+        <div class="mb-3">
+            <label for="phone_number" class="form-label text-white">Phone Number</label>
+            <input type="text" name="phone_number" id="phone_number" class="form-control" value="{{ user.phone_number }}">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label text-white">Email Address</label>
+            <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}">
+        </div>
+        <button type="submit" class="btn btn-outline-info w-100 mt-3">Save Changes</button>
+    </form>
+
+    <!-- Change Password -->
+    <div class="mt-5">
+        <h4 class="text-white">Change Password</h4>
+        <a href="#" class="btn btn-outline-light btn-sm mt-2">Update Password</a>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="mt-5">
+        <h4 class="text-danger">Danger Zone</h4>
+        <button class="btn btn-outline-danger btn-sm mt-2">Delete Account</button>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

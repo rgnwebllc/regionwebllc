@@ -29,3 +29,11 @@ def dashboard_view(request):
     'website_names': mark_safe(json.dumps(website_names)),
     'click_counts': mark_safe(json.dumps(click_counts)),
 })
+
+@login_required
+def payments_view(request):
+    return render(request, 'accounts/payments.html')
+
+@login_required
+def settings_view(request):
+    return render(request, 'accounts/settings.html')

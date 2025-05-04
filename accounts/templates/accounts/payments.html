@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Payments - Region Web{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h4 class="mb-4">Payments</h4>
+
+    <!-- Outstanding Invoices -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Outstanding Invoice
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Website Design Package</h5>
+            <p class="card-text">Due Date: June 1, 2025</p>
+            <p class="card-text">Amount: <strong>$1,200.00</strong></p>
+            <a href="#" class="btn btn-success">Pay Now</a>
+        </div>
+    </div>
+
+    <h4 class="mb-3 text-white">Payment History</h4>
+<div class="card mb-4 border-0 shadow-sm">
+    <div class="card-header text-white" style="background-color: #334155;">
+        Recent Payments
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table mb-0 text-white">
+                <thead style="background-color: #475569;">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Invoice</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>April 1, 2025</td>
+                        <td>Initial Deposit</td>
+                        <td><a href="#" class="text-info">Invoice #001</a></td>
+                        <td>$600.00</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                    <tr>
+                        <td>May 1, 2025</td>
+                        <td>Monthly Hosting</td>
+                        <td><a href="#" class="text-info">Invoice #002</a></td>
+                        <td>$50.00</td>
+                        <td><span class="badge bg-success">Paid</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer bg-transparent text-start">
+        <a href="#" class="btn btn-outline-light btn-sm">View Full Payment History</a>
+    </div>
+</div>
+    
+
+</div>
+{% endblock %}

@@ -128,11 +128,65 @@ blockquote {
     100% { transform: rotate(360deg); }
   }
 
+  .dropdown-menu {
+    background-color: rgba(66, 66, 66, 0.562); /* Subtle white tint */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    padding: 0.5rem 0;
+    min-width: 180px;
+  }
+  
+  .dropdown-menu .dropdown-item {
+    color: #e2e8f0; /* Soft slate blue (great contrast) */
+    padding: 0.55rem 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  
+  .dropdown-menu .dropdown-item.disabled {
+    color: #94a3b8; /* Muted slate for disabled */
+    pointer-events: none;
+    background-color: transparent;
+  }
+  
+  .dropdown-menu hr {
+    margin: 0.4rem 0;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 
-  #dropdown-username{
-    padding: 5px;
-    margin: 0;
-    text-align: center;
+  ::placeholder {
+    color: #cbd5e1 !important; /* Light slate (matches your theme) */
+    opacity: 1; /* Ensures full brightness */
+  }
+
+  .form-control {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+    border-radius: 6px !important;
+    padding: 10px 14px !important;
+    font-size: 0.95rem !important;
+    transition: 0.2s !important;
+  }
+  
+  .form-control:focus {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 0.15rem rgba(56, 189, 248, 0.25) !important;
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+  }
+  
+  label {
+    margin-bottom: 6px !important;
+    font-weight: 500 !important;
   }
 /* ---- Typography ---- */
 h1 {
