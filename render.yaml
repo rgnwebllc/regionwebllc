@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: regionwebllc
+    env: python
+    repo: https://github.com/rgnwebllc/regionwebllc.git
+    branch: main  # or 'master' if that's your default branch
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python manage.py migrate && python manage.py collectstatic --noinput && gunicorn website.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: website.settings
+      - key: SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: regionwebllc-db
+          property: connectionString
+      - key: DEBUG
+        value: "False"
+    buildFilter:
+      paths:
+        - website/*
+        - templates/*
+        - static/*
+        - manage.py
