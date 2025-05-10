@@ -87,7 +87,7 @@ Details:
         except Exception:
             messages.error(request, "❌ Something went wrong. Please try again.")
 
-        return redirect('/pricing/#consultation')
+        return redirect('/consultation/#consultation')
 
     return redirect('/')
 
