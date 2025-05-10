@@ -4,10 +4,79 @@
 {% block title %}Dashboard - {{ user.first_name|default:user.username|capfirst }}{% endblock %}
 
 {% block content %}
+
+{% if subscription and not subscription.is_active %}
+<div class="alert alert-warning">
+    Your subscription will end on {{ subscription.end_date }}.
+</div>
+{% endif %}
+
 <div class="container mt-5">
     <h2 class="mb-4">Welcome, {{ user.full_name|default:user.username|capfirst }}</h2>
-
     <div class="row g-4">
+
+        <!-- Subscription -->
+        <!-- <div class="col-12">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Your Subscription</h5>
+                    {% if subscription %}
+                    <h3 style="color: gold;">{{ plan|title }}</h3>
+                    {% if subscription.is_active or subscription.cancel_at_period_end %}
+
+                    {% if subscription.cancel_at_period_end %}
+                    {% with url_name='resume-subscription' %}
+                    <form method="POST" action="{% url 'resume-subscription' user.username %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success mt-3">
+                            Resume Subscription
+                        </button>
+                        <p class="text-muted mt-2">
+                            <small style="color: white;">Access until {{ subscription.end_date }}</small>
+                        </p>
+                    </form>
+                    {% endwith %}
+                    {% else %}
+                    {% with url_name='cancel-subscription' %}
+                    <form method="POST" action="{% url 'cancel-subscription' user.username %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger mt-3">
+                            Cancel Subscription
+                        </button>
+                        <p class="text-muted mt-2">
+                            <small style="color: white;">Renews on {{ subscription.end_date }}</small>
+                        </p>
+                    </form>
+                    {% endwith %}
+                    {% endif %}
+
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div> -->
+
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+              <h5 class="card-title">Invoices</h5>
+              <ul class="list-group list-group-flush">
+                {% for invoice in invoices %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ invoice.created|date:"M d, Y" }} – ${{ invoice.amount_due|floatformat:2 }}
+                    {% if invoice.status == "paid" %}
+                      <span class="badge bg-success">Paid</span>
+                    {% else %}
+                      <a href="{{ invoice.hosted_invoice_url }}" class="btn btn-sm btn-warning" target="_blank">Pay Now</a>
+                    {% endif %}
+                  </li>
+                {% empty %}
+                  <li class="list-group-item text-muted">No invoices yet.</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          
+
 
         <!-- Recent Payments -->
         <div class="col-md-6">
@@ -16,11 +85,12 @@
                     <h5 class="card-title">Recent Payments</h5>
                     <ul class="list-group list-group-flush">
                         {% for payment in recent_payments %}
-                            <li class="list-group-item d-flex justify-content-between">
-                                {{ payment.date }} <span>${{ payment.amount }}</span>
-                            </li>
+                        <li id="payment-details" class="list-group-item d-flex justify-content-between">
+                            {{ payment.date }} – ${{ payment.amount }}
+                            <span class="small">({{ payment.brand|capfirst }} •••• {{ payment.last4 }})</span>
+                        </li>
                         {% empty %}
-                            <li class="list-group-item text-muted">No recent payments.</li>
+                        <li class="list-group-item text-muted">No recent payments.</li>
                         {% endfor %}
                     </ul>
                     <a href="#" class="btn btn-outline-primary mt-3">View All Payments</a>
@@ -32,17 +102,14 @@
         <div class="col-md-6">
             <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5 class="card-title">Your Active Websites</h5>
+                    <h5 class="card-title">Your Website</h5>
                     <ul class="list-group list-group-flush">
                         {% for site in active_websites %}
-                            <li class="list-group-item">
-                                <a href="{{ site.url }}" target="_blank">{{ site.name }}</a>
-                            </li>
+                        <a style="font-size: 25px; color: gold;" href="{{ site.url }}" target="_blank">{{ site.name }}</a>
                         {% empty %}
-                            <li class="list-group-item text-muted">No active websites.</li>
+                        <li class="list-group-item text-muted">No active websites.</li>
                         {% endfor %}
                     </ul>
-                    <a href="#" class="btn btn-outline-primary mt-3">View All Websites</a>
                 </div>
             </div>
         </div>
@@ -55,17 +122,8 @@
                     <p><strong>Name:</strong> {{ user.full_name }}</p>
                     <p><strong>Email:</strong> {{ user.email }}</p>
                     <p><strong>Username:</strong> {{ user.username }}</p>
-                    <a href="{% url 'settings' %}" class="btn btn-outline-primary mt-3">Account Settings</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Website Clicks Chart -->
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">Website Clicks</h5>
-                    <canvas id="clickChart" height="100"></canvas>
+                    <a href="{% url 'settings' username=user.username %}" class="btn btn-outline-primary mt-3">Account
+                        Settings</a>
                 </div>
             </div>
         </div>
@@ -73,66 +131,5 @@
     </div>
 </div>
 
-<!-- Chart.js and Chart Script -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById('clickChart').getContext('2d');
 
-    const data = {
-        labels: {{ website_names|safe }},
-        datasets: [{
-            label: 'Clicks',
-            data: {{ click_counts|safe }},
-            backgroundColor: 'rgba(0, 123, 255, 0.7)',
-            borderColor: 'rgba(0, 123, 255, 1)',
-            borderWidth: 1,
-            borderRadius: 5,
-            barThickness: 40
-        }]
-    };
-
-    new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#333',
-                    titleColor: '#fff',
-                    bodyColor: '#eee',
-                    padding: 10,
-                    borderWidth: 1,
-                    borderColor: '#888'
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        color: '#ccc',
-                        font: { size: 14 }
-                    },
-                    grid: { display: false }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: '#ccc',
-                        stepSize: 50,
-                        font: { size: 14 }
-                    },
-                    grid: {
-                        color: 'rgba(255,255,255,0.05)',
-                        lineWidth: 1
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
 {% endblock %}

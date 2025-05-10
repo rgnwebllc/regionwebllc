@@ -9,7 +9,7 @@
     <div data-aos="fade-in" data-aos-duration="1500" data-aos-easing="ease-in">
         <h1 id="we-build" class="display-4">We Build Websites That Work</h1>
         <p class="lead">Custom, mobile-friendly designs tailored to your business.</p>
-        <a href="#contact" class="btn btn-outline-light mt-3">Request a Quote</a>
+        <a href="#contact" class="btn btn-outline-light mt-3">Contact Us</a>
     </div>
 </header>
 
@@ -21,9 +21,8 @@
             <div class="col-md-4 col-sm-6 col-12 mb-4">
                 <div class="card h-100">
                     <div class="card-body">
-                        <h5 class="card-title">Custom Websites</h5>
-                        <p class="card-text">Clean, responsive websites built to reflect your brand and convert
-                            visitors.
+                        <h5 class="card-title">Custom Static Websites</h5>
+                        <p class="card-text">We build clean, responsive websites with light functionality, designed to reflect your brand and convert visitors.
                         </p>
                     </div>
                 </div>
@@ -53,72 +52,68 @@
     <div class="our-work-bg">
         <div class="container d-flex flex-column" id="home-cont">
             <h2 class="mb-4" data-aos="flip-down" data-aos-duration="1500">Our Work</h2>
-            <div class="row text-center" id="row-work-imgs" data-aos="fade-up" data-aos-duration="1500">
-                <div class="col-12 col-sm-6 col-md-4 mb-3 d-flex justify-content-center">
-                    <img src="#" class="img-fluid rounded" id="work-img" alt="Project 1"
-                        onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
+
+
+            <div class="row justify-content-center text-center" id="row-work-imgs" data-aos="fade-up" data-aos-duration="1500">
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                  <img src="{% static 'images/project1.jpg' %}" class="img-fluid rounded mx-auto d-block" alt="Project 1"
+                       onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3 d-flex justify-content-center">
-                    <img src="#" class="img-fluid rounded" id="work-img" alt="Project 2"
-                        onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                  <img src="#" class="img-fluid rounded mx-auto d-block" alt="Project 2"
+                       onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
                 </div>
-                <div class="col-12 col-sm-6 col-md-4 mb-3 d-flex justify-content-center">
-                    <img src="#" class="img-fluid rounded" id="work-img" alt="Project 3"
-                        onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                  <img src="#" class="img-fluid rounded mx-auto d-block" alt="Project 3"
+                       onerror="this.onerror=null; this.src='/static/images/placeholder.png';">
                 </div>
-            </div>
-            <a href="#" class="btn btn-primary mt-3">View Full Portfolio</a>
+              </div>
+            <a href="{% url 'portfolio' %}" class="btn btn-primary mt-3">View Full Portfolio</a>
         </div>
     </div>
 </section>
 
-<!-- Subscription Prices -->
-<section class="container text-center my-5" data-aos="flip-down" data-aos-duration="2500">
-    <div class="container d-flex flex-column" id="home-cont">
-        <h2 class="mb-4" data-aos="fade-up" data-aos-duration="1500" data-aos-easing="ease-in">Compare Plans</h2>
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-12 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Monthly</h5><br>
-                        <h1>$200/mo</h1><br>
-                        <p>$2400/yr - Billed Monthly.</p><br>
-                        <p class="card-text">Clean, responsive websites built to reflect your brand and convert
-                            visitors.
-                        </p>
-                    </div>
+<!-- Testimonials Section -->
+<!-- <section class="container my-5" data-aos="fade-up" data-aos-duration="1500">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">What Our Clients Say</h2>
+        <p class="text-muted">Real feedback from businesses we've helped grow online.</p>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">“RegionWeb brought our vision to life. We finally have a website we’re proud to share.”</p>
+                    <h6 class="mt-3 fw-bold">– Sarah K., Boutique Owner</h6>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-12 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Semi-Anually</h5><br>
-                        <h1>$1080</h1><br>
-                        <p>Save 10% - Billed every 6 months.</p><br>
-                        <p class="card-text">Sell your products online with a secure, easy-to-use storefront.</p>
-                    </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">“Fast, reliable, and super helpful throughout the whole process. Highly recommended!”</p>
+                    <h6 class="mt-3 fw-bold">– Mike L., Local Contractor</h6>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-6 col-12 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Anually</h5><br>
-                        <h1>$1920</h1><br>
-                        <p>Save 20% - Billed every 12 months.</p><br>
-                        <p class="card-text">We offer regular updates, security checks, and content updates.</p>
-                    </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">“The site looks amazing and works flawlessly on mobile. My customers love it.”</p>
+                    <h6 class="mt-3 fw-bold">– Jasmine P., Photographer</h6>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section> -->
+
 
 <!-- Contact Section -->
 <section id="contact" class="our-work-section">
     <div class="our-work-bg" id="contact-bg">
         <div class="container d-flex flex-column align-items-center" id="home-cont">
-            <h2 class="text-center mb-3">Let's Work Together</h2>
-            <p class="text-center mb-4">Need a new website or redesign? We’d love to help.</p>
+            <h2 class="text-center mb-3">Need Help?</h2>
+            <p class="text-center mb-4">Use this form for general inquiries.</p>
 
             {% if messages %}
             <div class="w-100 mb-3" id="message-container">
@@ -181,14 +176,14 @@
 <script>
     // Auto-hide messages after 5 seconds
     setTimeout(() => {
-      const msg = document.getElementById('message-container');
-      if (msg) {
-        msg.style.transition = 'opacity 0.5s ease';
-        msg.style.opacity = '0';
-        setTimeout(() => msg.remove(), 500); // Remove after fade
-      }
+        const msg = document.getElementById('message-container');
+        if (msg) {
+            msg.style.transition = 'opacity 0.5s ease';
+            msg.style.opacity = '0';
+            setTimeout(() => msg.remove(), 500); // Remove after fade
+        }
     }, 5000);
-  </script>
+</script>
 
 
 {% endblock %}

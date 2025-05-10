@@ -1,0 +1,18 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>{{ title }}</h1>
+<div style="display: flex; gap: 2rem;">
+  <div style="background: #0f172a; color: #fff; padding: 1.5rem; border-radius: 8px; width: 200px;">
+    <h4>Total Users</h4>
+    <p style="font-size: 2rem;">{{ total_users }}</p>
+  </div>
+  <div style="background: #0f172a; color: #fff; padding: 1.5rem; border-radius: 8px; width: 200px;">
+    <h4>Subscriptions</h4>
+    <p style="font-size: 2rem;">{{ total_subscriptions }}</p>
+  </div>
+  <div style="background: #22c55e; color: #fff; padding: 1.5rem; border-radius: 8px; width: 200px;">
+    <h4>Active Subs</h4>
+    <p style="font-size: 2rem;">{{ active_subscriptions }}</p>
+  </div>
+</div>
+{% endblock %}

@@ -76,6 +76,14 @@ select:focus {
   box-shadow: none !important;
 }
 
+.list-group-flush>.list-group-item{
+  background-color: #0f172a;
+}
+
+#payment-details {
+  color: white;
+}
+
 img,
 iframe {
   max-width: 100%;
@@ -166,6 +174,10 @@ blockquote {
     color: #cbd5e1 !important; /* Light slate (matches your theme) */
     opacity: 1; /* Ensures full brightness */
   }
+
+  .dropdown-toggle::after {
+    display: none !important;
+}
 
   .form-control {
     background-color: #0f172a !important;
@@ -371,6 +383,45 @@ h2 {
         padding: 0.6rem 1.5rem;
     }
 }
+@media (max-width: 768px) {
+  .navbar-nav .nav-item .btn {
+    margin-bottom: 0.75rem;
+    width: 100%; /* Optional: makes buttons full width on mobile */
+  }
+  .navbar-nav .btn {
+    padding: 10px 16px;
+    font-size: 1rem;
+  }
+}
+
+.portfolio-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1rem;
+  flex-direction: row; /* Ensures row layout by default (desktop) */
+}
+
+.portfolio-img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Switch to column layout on small screens */
+@media (max-width: 767px) {
+  .portfolio-gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 /* ---- Sections ---- */
 section {
@@ -390,11 +441,22 @@ section {
     padding-right: 0.75rem;
 }
 
-#row-work-images {
-    justify-content: center !important;
-    display: flex;
-    align-items: center;
+#row-work-imgs {
+  justify-content: center !important;
+  text-align: center !important;
+  margin-left: 0;
 }
+
+#row-work-imgs .col-12 {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+#row-work-imgs img {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 
 /* #about-row {
     height: 20vh !important;
@@ -492,6 +554,13 @@ section {
     font-size: 20px !important;
   }
 
+  #success_or_cancel{
+    display: block;
+    width: auto;
+    height: 550px;
+    padding-top: 5rem;
+  }
+
   #btn-phone {
     width: 50% !important;
   }
@@ -521,7 +590,7 @@ section {
 }
 
 .our-work-bg {
-    background-color: #0f172a; /* Dark navy background */
+    background: url('/static/images/grainy_1920.png') no-repeat center center/cover !important; /* Dark navy background */
 }
 
 #contact-bg {

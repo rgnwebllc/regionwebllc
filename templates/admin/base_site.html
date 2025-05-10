@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/custom_admin.css' %}">
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">RegionWeb Admin</a></h1>
+{% endblock %}
+
+{% block nav-global %}
+    <div class="custom-header-message">
+        Welcome to the RegionWeb Admin Portal
+    </div>
+{% endblock %}

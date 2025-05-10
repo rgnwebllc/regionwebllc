@@ -1,0 +1,56 @@
+{% extends "admin/login.html" %}
+{% load static %}
+
+{% block title %}RegionWeb Admin Login{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    body.login {
+        background-color: #1e293b !important;
+        font-family: 'Segoe UI', sans-serif !important;
+    }
+
+    .login #container {
+        background-color: #334155 !important;
+        border-radius: 8px !important;
+        padding: 2rem !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+        color: #f1f5f9 !important;
+    }
+
+    .login h1 {
+        text-align: center !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        color: #38bdf8 !important;
+    }
+
+    .form-row label {
+        color: #f1f5f9 !important;
+    }
+
+    .form-row input {
+        background-color: #1e293b !important;
+        border: 1px solid #475569 !important;
+        color: #f1f5f9 !important;
+    }
+
+    .form-row input:focus {
+        border-color: #38bdf8 !important;
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3) !important;
+    }
+
+    .submit-row input {
+        background-color: #38bdf8 !important;
+        border: none !important;
+        color: #0f172a !important;
+        font-weight: bold !important;
+    }
+
+    .submit-row input:hover {
+        background-color: #0ea5e9 !important;
+        color: white !important;
+    }
+</style>
+{% endblock %}
