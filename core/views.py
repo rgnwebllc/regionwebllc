@@ -111,7 +111,7 @@ def portfolio_view(request):
         },
         {
             'title': 'Your Website Here',
-            'description': "It's free advertisement.",
+            'description': "Contact us today and have your website posted here.",
             'image_url': '/static/images/placeholder.png',
             'url': '#'
         },
