@@ -7,7 +7,8 @@ services:
     buildCommand: |
       pip install -r requirements.txt
     startCommand: |
-      python manage.py migrate && python manage.py collectstatic --noinput && gunicorn website.wsgi:application
+      python manage.py collectstatic --noinput && \
+      gunicorn config.wsgi:application
     envVars:
     - key: DJANGO_SETTINGS_MODULE
       value: config.settings
