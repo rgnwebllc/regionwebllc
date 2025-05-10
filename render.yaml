@@ -8,6 +8,15 @@ services:
       pip install -r requirements.txt
     startCommand: |
       python manage.py migrate && python manage.py collectstatic --noinput && gunicorn website.wsgi:application
+    envVars:
+    - key: DJANGO_SETTINGS_MODULE
+      value: config.settings
+    - key: SECRET_KEY
+      sync: false
+    - key: DEBUG
+      value: "False"
+    - key: ALLOWED_HOSTS
+      value: regionwebllc.onrender.com
     buildFilter:
       paths:
         - website/*
