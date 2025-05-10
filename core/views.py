@@ -118,5 +118,5 @@ def portfolio_view(request):
     ]
     return render(request, 'core/portfolio.html', {'projects': projects})
 
-def pricing_view(request):
+def consultation_view(request):
     return render(request, 'core/pricing.html')
