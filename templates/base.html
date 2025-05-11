@@ -69,18 +69,36 @@
     <script src="{% static 'js/preloader.js' %}"></script>
 
     {% block footer %}
-    <footer class="site-footer">
-        <div class="footer-bg">
-            <div class="container text-center text-white py-4">
-                <p class="mb-2">© {{ year }} Region Web LLC. All rights reserved.</p>
-                <p class="mb-0">
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-light">Privacy Policy</a>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-light">Terms of Service</a>
-                </p>
+<footer class="site-footer">
+    <div class="footer-bg">
+        <div class="container text-center text-white py-4">
+            <p class="mb-2">© {{ year }} Region Web LLC. All rights reserved.</p>
+            
+            <!-- Social Media Icons -->
+            <div class="mb-3">
+                <a href="https://www.facebook.com/share/1THnr4VKbp/" target="_blank" class="text-light me-3 text-decoration-none">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <!-- <a href="https://twitter.com/handle" target="_blank" class="text-light me-3 text-decoration-none">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="https://instagram.com/handle" target="_blank" class="text-light me-3 text-decoration-none">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/profile" target="_blank" class="text-light">
+                    <i class="bi bi-linkedin"></i> -->
+                </a>
             </div>
+
+            <!-- Legal Links -->
+            <p class="mb-0">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-light me-3">Privacy Policy</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-light">Terms of Service</a>
+            </p>
         </div>
-    </footer>
-    {% endblock %}
+    </div>
+</footer>
+{% endblock %}
 
 
     <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
