@@ -19,6 +19,16 @@
     <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQEYT9JP7R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-EQEYT9JP7R');
+    </script>
+
 <body>
     <div id="preloader">
         <img src="{% static 'images/IconOnly.png' %}" alt="Loading..." class="spinner-logo">
@@ -67,15 +77,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/base.js' %}"></script>
     <script src="{% static 'js/preloader.js' %}"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQEYT9JP7R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-EQEYT9JP7R');
-    </script>
 
     {% block footer %}
 <footer class="site-footer">
