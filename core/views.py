@@ -87,9 +87,9 @@ Details:
         except Exception:
             messages.error(request, "❌ Something went wrong. Please try again.")
 
-        return redirect('/consultation/#consultation')
+        return redirect('/free-consultation/#consultation')
 
-    return redirect('/')
+    return render(request, 'core/home.html', {'year': datetime.now().year})
 
 
 def about_view(request):
