@@ -43,15 +43,23 @@ body {
 }
 
 .form-control {
-    background-color: #334155;
-    border-radius: 0px;
-    padding: 10px;
-    color: white;
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border: 1px solid #475569 !important;
+    border-radius: 6px !important;
+    padding: 10px 14px !important;
+    font-size: 0.95rem !important;
+    transition: 0.2s !important;
+    
 }
 
 .form-control:focus {
-    box-shadow: none !important;
-  }
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 0.15rem rgba(56, 189, 248, 0.25) !important;
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    
+}
 
 #contact input::placeholder,
 #contact textarea::placeholder {
@@ -89,6 +97,19 @@ iframe {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* #free-consultation-btn {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.8);
+    transition: box-shadow 0.3s ease;
+} */
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    color: #0f172a !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 20px rgb(255, 255, 255);
+    
 }
 
 .modal-content {
@@ -177,7 +198,7 @@ blockquote {
   }
 
   ::placeholder {
-    color: #cbd5e1 !important; /* Light slate (matches your theme) */
+    color: #cbd5e1 !important; /* Light slate */
     opacity: 1; /* Ensures full brightness */
   }
 
@@ -193,14 +214,16 @@ blockquote {
     padding: 10px 14px !important;
     font-size: 0.95rem !important;
     transition: 0.2s !important;
-  }
+    
+}
   
   .form-control:focus {
     border-color: #38bdf8 !important;
     box-shadow: 0 0 0 0.15rem rgba(56, 189, 248, 0.25) !important;
     background-color: #1e293b !important;
     color: #f8fafc !important;
-  }
+    
+}
   
   label {
     margin-bottom: 6px !important;
@@ -572,9 +595,12 @@ section {
   }
 
   .btn:hover {
-    background-color: rgba(255, 255, 255, 0.6) !important; /* bluish tint */
+    background-color: rgba(255, 255, 255, 0.6) !important;
     color: #0f172a !important;
-  }
+    border-radius: 10px !important;
+    box-shadow: 0 0 20px rgb(255, 255, 255);
+    
+}
 
   #work-img{
     border: 1px solid rgba(255, 255, 255, 0.6);

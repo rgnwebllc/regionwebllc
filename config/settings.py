@@ -29,6 +29,9 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
+#Development Hosts
+# ALLOWED_HOSTS = ['10.0.0.207', '127.0.0.1']
+
 # Application definition
 
 INSTALLED_APPS = [

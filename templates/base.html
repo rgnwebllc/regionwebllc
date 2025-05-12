@@ -4,92 +4,96 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}RegionWeb LLC{% endblock %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}RegionWeb LLC{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 </head>
 
 <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQEYT9JP7R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQEYT9JP7R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
 
-      gtag('config', 'G-EQEYT9JP7R');
-    </script>
+  gtag('config', 'G-EQEYT9JP7R');
+</script>
 
 <body>
-    <div id="preloader">
-        <img src="{% static 'images/IconOnly.png' %}" alt="Loading..." class="spinner-logo">
-        <p id="loading-message">...</p>
+  <div id="preloader">
+    <img src="{% static 'images/IconOnly.png' %}" alt="Loading..." class="spinner-logo">
+    <p id="loading-message">...</p>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+        <img class="logo me-2" src="{% static 'images/IconOnly.png' %}" alt="Logo">
+        <span>Region Web</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center text-start text-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'testemonials' %}">Testemonials</a>
+          </li>
+          {% if user.is_authenticated and user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a id="free-consultation-btn" class="btn btn-outline-light me-2" href="{% url 'consultation' %}">Free Consultation</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
-                <img class="logo me-2" src="{% static 'images/IconOnly.png' %}" alt="Logo">
-                <span>Region Web</span>
-            </a>
+  </nav>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  {% block content %}{% endblock %}
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center text-start text-lg-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a>
-                    </li>
-                    {% if user.is_authenticated and user.is_staff %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light me-2" href="{% url 'consultation' %}">Free Consultation</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+  <script src="{% static 'js/preloader.js' %}"></script>
 
-    {% block content %}{% endblock %}
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{% static 'js/base.js' %}"></script>
-    <script src="{% static 'js/preloader.js' %}"></script>
-
-    {% block footer %}
-<footer class="site-footer">
+  {% block footer %}
+  <footer class="site-footer">
     <div class="footer-bg">
-        <div class="container text-center text-white py-4">
-            <p class="mb-2">© {{ year }} Region Web LLC. All rights reserved.</p>
-            
-            <!-- Social Media Icons -->
-            <div class="mb-3">
-                <a href="https://www.facebook.com/share/1THnr4VKbp/" target="_blank" class="text-light me-3 text-decoration-none">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <!-- <a href="https://twitter.com/handle" target="_blank" class="text-light me-3 text-decoration-none">
+      <div class="container text-center text-white py-4">
+        <p class="mb-2">© {{ year }} Region Web LLC. All rights reserved.</p>
+
+        <!-- Social Media Icons -->
+        <div class="mb-3">
+          <a href="https://www.facebook.com/share/1THnr4VKbp/" target="_blank"
+            class="text-light me-3 text-decoration-none">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <!-- <a href="https://twitter.com/handle" target="_blank" class="text-light me-3 text-decoration-none">
                     <i class="bi bi-twitter-x"></i>
                 </a>
                 <a href="https://instagram.com/handle" target="_blank" class="text-light me-3 text-decoration-none">
@@ -97,135 +101,152 @@
                 </a>
                 <a href="https://linkedin.com/in/profile" target="_blank" class="text-light">
                     <i class="bi bi-linkedin"></i> -->
-                </a>
-            </div>
-
-            <!-- Legal Links -->
-            <p class="mb-0">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-light me-3">Privacy Policy</a>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-light">Terms of Service</a>
-            </p>
+          </a>
         </div>
-    </div>
-</footer>
-{% endblock %}
 
-
-    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content shadow" style="background-color: #0f172a; color: #f8f9fa; border: 1px solid #334155;">
-      <div class="modal-header border-0">
-        <h5 class="modal-title" id="termsModalLabel">Terms of Service</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
-        <p><strong>Effective Date:</strong> May 2025</p>
-
-        <p>These Terms of Service ("Terms") govern your use of consulting services provided by RegionWeb LLC ("we," "our," or "us"). By requesting a quote, booking a consultation, or engaging in any services with us, you agree to these Terms.</p>
-
-        <h6 class="mt-4">1. Services Offered</h6>
-        <p>RegionWeb LLC provides one-on-one consultations, custom web design, development, and deployment services. Each project is scoped individually based on your business goals and technology needs.</p>
-
-        <h6 class="mt-4">2. Consultations & Quotes</h6>
-        <ul>
-          <li>Initial consultations are free unless otherwise stated.</li>
-          <li>Project quotes are valid for 14 days and are subject to revision based on scope changes.</li>
-        </ul>
-
-        <h6 class="mt-4">3. Payment & Invoicing</h6>
-        <ul>
-          <li>Payments are due according to agreed project milestones (e.g., 50% upfront, 50% upon completion).</li>
-          <li>All invoices are sent electronically and payable via Stripe, PayPal, or bank transfer.</li>
-        </ul>
-
-        <h6 class="mt-4">4. Revisions & Approvals</h6>
-        <p>We offer 2 free rounds of design revisions. Additional changes outside the scope may incur extra fees. Projects are considered complete upon your written approval or final payment—whichever comes first.</p>
-
-        <h6 class="mt-4">5. Cancellations</h6>
-        <p>You may cancel a project before work begins with no fee. If work has started, a partial fee may apply based on time and resources already used.</p>
-
-        <h6 class="mt-4">6. Intellectual Property</h6>
-        <ul>
-          <li>Upon full payment, all custom website files and assets developed for your project are your property.</li>
-          <li>We reserve the right to showcase completed work in our portfolio unless otherwise agreed upon.</li>
-        </ul>
-
-        <h6 class="mt-4">7. Warranties & Limitations</h6>
-        <ul>
-          <li>We guarantee that all delivered code will be functional and responsive upon launch.</li>
-          <li>We are not liable for third-party outages, hosting issues, or software updates unless covered under a support agreement.</li>
-        </ul>
-
-        <h6 class="mt-4">8. Contact</h6>
-        <p>
-          RegionWeb LLC<br>
-          support@regionwebllc.com<br>
-          (219) 588-1104
+        <!-- Legal Links -->
+        <p class="mb-0">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-light me-3">Privacy Policy</a>
+          <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-light">Terms of Service</a>
         </p>
       </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+    </div>
+  </footer>
+  {% endblock %}
+
+
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content shadow" style="background-color: #0f172a; color: #f8f9fa; border: 1px solid #334155;">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="termsModalLabel">Terms of Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+          <p><strong>Effective Date:</strong> May 2025</p>
+
+          <p>These Terms of Service ("Terms") govern your use of consulting services provided by RegionWeb LLC ("we,"
+            "our," or "us"). By requesting a quote, booking a consultation, or engaging in any services with us, you
+            agree to these Terms.</p>
+
+          <h6 class="mt-4">1. Services Offered</h6>
+          <p>RegionWeb LLC provides one-on-one consultations, custom web design, development, and deployment services.
+            Each project is scoped individually based on your business goals and technology needs.</p>
+
+          <h6 class="mt-4">2. Consultations & Quotes</h6>
+          <ul>
+            <li>Initial consultations are free unless otherwise stated.</li>
+            <li>Project quotes are valid for 14 days and are subject to revision based on scope changes.</li>
+          </ul>
+
+          <h6 class="mt-4">3. Payment & Invoicing</h6>
+          <ul>
+            <li>Payments are due according to agreed project milestones (e.g., 50% upfront, 50% upon completion).</li>
+            <li>All invoices are sent electronically and payable via Stripe, PayPal, or bank transfer.</li>
+          </ul>
+
+          <h6 class="mt-4">4. Revisions & Approvals</h6>
+          <p>We offer 2 free rounds of design revisions. Additional changes outside the scope may incur extra fees.
+            Projects are considered complete upon your written approval or final payment—whichever comes first.</p>
+
+          <h6 class="mt-4">5. Cancellations</h6>
+          <p>You may cancel a project before work begins with no fee. If work has started, a partial fee may apply based
+            on time and resources already used.</p>
+
+          <h6 class="mt-4">6. Intellectual Property</h6>
+          <ul>
+            <li>Upon full payment, all custom website files and assets developed for your project are your property.
+            </li>
+            <li>We reserve the right to showcase completed work in our portfolio unless otherwise agreed upon.</li>
+          </ul>
+
+          <h6 class="mt-4">7. Warranties & Limitations</h6>
+          <ul>
+            <li>We guarantee that all delivered code will be functional and responsive upon launch.</li>
+            <li>We are not liable for third-party outages, hosting issues, or software updates unless covered under a
+              support agreement.</li>
+          </ul>
+
+          <h6 class="mt-4">8. Contact</h6>
+          <p>
+            RegionWeb LLC<br>
+            support@regionwebllc.com<br>
+            (219) 588-1104
+          </p>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content shadow" style="background-color: #0f172a; color: #f8f9fa; border: 1px solid #334155;">
-      <div class="modal-header border-0">
-        <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
-        <p><strong>Effective Date:</strong> May 2025</p>
-        <p>At RegionWeb LLC, your privacy is important to us. This Privacy Policy outlines how we collect and handle your information when you request a quote, fill out a contact form, or work with us on a website project.</p>
+  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content shadow" style="background-color: #0f172a; color: #f8f9fa; border: 1px solid #334155;">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+          <p><strong>Effective Date:</strong> May 2025</p>
+          <p>At RegionWeb LLC, your privacy is important to us. This Privacy Policy outlines how we collect and handle
+            your information when you request a quote, fill out a contact form, or work with us on a website project.
+          </p>
 
-        <h6 class="mt-4">1. What We Collect</h6>
-        <ul>
-          <li><strong>Basic Contact Info:</strong> Your name, email, phone number, and business details submitted through our contact form or during consultations.</li>
-          <li><strong>Project Requirements:</strong> Any preferences or business needs you share related to your web design project.</li>
-          <li><strong>Website Data:</strong> We may collect basic analytics (browser, device, IP address) for performance and security purposes.</li>
-        </ul>
+          <h6 class="mt-4">1. What We Collect</h6>
+          <ul>
+            <li><strong>Basic Contact Info:</strong> Your name, email, phone number, and business details submitted
+              through our contact form or during consultations.</li>
+            <li><strong>Project Requirements:</strong> Any preferences or business needs you share related to your web
+              design project.</li>
+            <li><strong>Website Data:</strong> We may collect basic analytics (browser, device, IP address) for
+              performance and security purposes.</li>
+          </ul>
 
-        <h6 class="mt-4">2. Why We Collect It</h6>
-        <ul>
-          <li>To respond to inquiries and provide accurate quotes</li>
-          <li>To deliver web design and consulting services</li>
-          <li>To communicate updates, revisions, and support during your project</li>
-        </ul>
+          <h6 class="mt-4">2. Why We Collect It</h6>
+          <ul>
+            <li>To respond to inquiries and provide accurate quotes</li>
+            <li>To deliver web design and consulting services</li>
+            <li>To communicate updates, revisions, and support during your project</li>
+          </ul>
 
-        <h6 class="mt-4">3. Data Sharing</h6>
-        <p>We don’t sell your personal information. We may share it with trusted partners (e.g., hosting providers, domain registrars) only if necessary for your project.</p>
+          <h6 class="mt-4">3. Data Sharing</h6>
+          <p>We don’t sell your personal information. We may share it with trusted partners (e.g., hosting providers,
+            domain registrars) only if necessary for your project.</p>
 
-        <h6 class="mt-4">4. Payment Handling</h6>
-        <p>We do not process payments directly through our site. If online payment is requested, it will be securely handled through third-party services like Stripe, PayPal, or QuickBooks.</p>
+          <h6 class="mt-4">4. Payment Handling</h6>
+          <p>We do not process payments directly through our site. If online payment is requested, it will be securely
+            handled through third-party services like Stripe, PayPal, or QuickBooks.</p>
 
-        <h6 class="mt-4">5. Cookies</h6>
-        <p>Our site may use cookies for basic performance or analytics. You can adjust cookie settings in your browser at any time.</p>
+          <h6 class="mt-4">5. Cookies</h6>
+          <p>Our site may use cookies for basic performance or analytics. You can adjust cookie settings in your browser
+            at any time.</p>
 
-        <h6 class="mt-4">6. Your Rights</h6>
-        <ul>
-          <li>You can request a copy of your stored data or ask us to delete it by emailing support@regionwebllc.com.</li>
-          <li>We honor all valid data access and deletion requests promptly.</li>
-        </ul>
+          <h6 class="mt-4">6. Your Rights</h6>
+          <ul>
+            <li>You can request a copy of your stored data or ask us to delete it by emailing support@regionwebllc.com.
+            </li>
+            <li>We honor all valid data access and deletion requests promptly.</li>
+          </ul>
 
-        <h6 class="mt-4">7. Changes to This Policy</h6>
-        <p>This policy may be updated if our services or data handling practices change. We'll always display the latest version here.</p>
+          <h6 class="mt-4">7. Changes to This Policy</h6>
+          <p>This policy may be updated if our services or data handling practices change. We'll always display the
+            latest version here.</p>
 
-        <h6 class="mt-4">8. Contact</h6>
-        <p>
-          RegionWeb LLC<br>
-          support@regionwebllc.com<br>
-          (219) 588-1104
-        </p>
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+          <h6 class="mt-4">8. Contact</h6>
+          <p>
+            RegionWeb LLC<br>
+            support@regionwebllc.com<br>
+            (219) 588-1104
+          </p>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 </body>

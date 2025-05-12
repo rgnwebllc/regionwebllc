@@ -118,5 +118,8 @@ def portfolio_view(request):
     ]
     return render(request, 'core/portfolio.html', {'projects': projects})
 
+def testemonials_view(request):
+    return render(request, 'core/forbidden.html', status=403)
+
 def consultation_view(request):
     return render(request, 'core/pricing.html')

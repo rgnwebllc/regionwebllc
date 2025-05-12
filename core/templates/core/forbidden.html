@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Under Construction - Region Web{% endblock %}
+
+{% block content %}
+<style>
+  @keyframes hammer-strike {
+    0%   { transform: rotate(0deg); }
+    10%  { transform: rotate(-45deg); }
+    30%  { transform: rotate(10deg); }
+    50%  { transform: rotate(-30deg); }
+    70%  { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .hammer-icon {
+    font-size: 3rem;
+    display: inline-block;
+    animation: hammer-strike 2s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+
+  .construction-card {
+    background-color: #fff3cd;
+    border: 2px dashed #ffc107;
+    color: #856404;
+    padding: 2.5rem 2rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .btn-back {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-back:hover {
+    background-color: #495057;
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="construction-card shadow-lg">
+    <!-- Emoji Hammer Icon -->
+    <div class="hammer-icon mb-3">🔨</div>
+
+    <h3 class="fw-bold">🚧Under Construction🚧</h3>
+    <p>This page is off-limits while we're doing a little maintenance or haven’t given access yet.</p>
+    <a href="{% url 'home' %}" class="btn btn-back">Take Me Home</a>
+  </div>
+</div>
+{% endblock %}
