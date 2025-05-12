@@ -23,17 +23,17 @@
       {% csrf_token %}
       <div class="mb-3">
         <label for="name">Full Name *</label>
-        <input type="text" id="name" name="name" required class="form-control">
+        <input type="text" placeholder="John M. Doe" id="name" name="name" required class="form-control">
       </div>
 
       <div class="mb-3">
         <label for="email">Email Address *</label>
-        <input type="email" id="email" name="email" required class="form-control">
+        <input type="email" placeholder="john.m.doe@email.com" id="email" name="email" required class="form-control">
       </div>
 
       <div class="mb-3">
         <label for="business">Business Name / Website (if any)</label>
-        <input type="text" id="business" name="business" class="form-control">
+        <input type="text" placeholder="Your Business @ yourwebsite.com" id="business" name="business" class="form-control">
       </div>
 
       <div class="mb-3">
@@ -47,7 +47,7 @@
 
       <div class="mb-3">
         <label for="details">What do you need?</label>
-        <textarea id="details" name="details" rows="4" placeholder="Tell us about what you had in mind..."
+        <textarea id="details" name="details" rows="4" required placeholder="Tell us about what you had in mind..."
           class="form-control"></textarea>
       </div>
 
