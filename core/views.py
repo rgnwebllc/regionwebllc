@@ -35,12 +35,14 @@ def forward_log_to_discord(request):
     return JsonResponse({"error": "Invalid method"}, status=405)
 
 def send_log(message):
-    url = "https://regionwebllc.com/log-to-discord/"
-    headers = {"Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}"}
+    url = "https://www.regionwebllc.com/log-to-discord/"
+    headers = {
+        "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+    }
     try:
         requests.post(url, json={"message": message}, headers=headers, timeout=5)
     except requests.exceptions.RequestException:
-        pass  # Optionally log this exception
+        pass
 
 
 
