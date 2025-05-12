@@ -27,10 +27,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
-ALLOWED_HOSTS = ['10.0.0.207', '127.0.0.1']
+# ALLOWED_HOSTS = ['10.0.0.207', '127.0.0.1']
 
 # Application definition
 
