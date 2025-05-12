@@ -4,6 +4,44 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.contrib import messages
 from datetime import datetime
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import requests
+
+DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1371602723849371698/wKCrH72wIbLG1iVIjp_l3wE2kj8qn1ZWyZ6r9NIx1wy0WGE3oWs2EyLBkI38kvsnTgWc"
+
+@csrf_exempt
+def forward_log_to_discord(request):
+    if request.method == 'POST':
+        token = request.headers.get("Authorization")
+        if token != f"Bearer {settings.DISCORD_LOG_TOKEN}":
+            return JsonResponse({"error": "Unauthorized"}, status=403)
+        
+        try:
+            data = json.loads(request.body)
+            message = data.get('message', 'No message provided')
+
+            payload = {"content": f"[Render Log] {message}"}
+            response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+
+            if response.status_code in (200, 204):
+                return JsonResponse({"status": "success"}, status=200)
+            else:
+                return JsonResponse({"error": "Failed to send to Discord"}, status=500)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=400)
+
+    return JsonResponse({"error": "Invalid method"}, status=405)
+
+def send_log(message):
+    url = "https://regionwebllc.com/log-to-discord/"
+    headers = {"Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}"}
+    try:
+        requests.post(url, json={"message": message}, headers=headers, timeout=5)
+    except requests.exceptions.RequestException:
+        pass  # Optionally log this exception
+
 
 
 def home(request):
@@ -41,6 +79,7 @@ Message:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! Your message has been sent.")
+            send_log(f"New contact form submission from {name}")
         except Exception:
             messages.error(request, "❌ Sorry, something went wrong. Please try again.")
 
@@ -84,6 +123,7 @@ Details:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! We'll follow up with you shortly.")
+            send_log(f"New consultation form submission from {name}")
         except Exception:
             messages.error(request, "❌ Something went wrong. Please try again.")
 

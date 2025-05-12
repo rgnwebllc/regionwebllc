@@ -9,4 +9,5 @@ urlpatterns = [
     path('testemonials/', views.testemonials_view, name='testemonials'),
     path('free-consultation/', views.consultation_view, name='consultation'),
     path('contact/', views.consultation_request, name='consultation-request'),
+    path('log-to-discord/', views.forward_log_to_discord, name='log_to_discord'),
 ]

@@ -16,6 +16,9 @@ import os
 import logging
 from django.contrib.messages import constants as messages
 import dj_database_url
+import logging
+import requests
+from django.conf import settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,11 +29,27 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
+DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
 # ALLOWED_HOSTS = ['10.0.0.207', '127.0.0.1']
+
+class DiscordLogHandler(logging.Handler):
+    def emit(self, record):
+        log_entry = self.format(record)
+        headers = {"Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}"}
+        try:
+            requests.post(
+                "https://regionwebllc.com/log-to-discord/",
+                json={"message": log_entry},
+                headers=headers,
+                timeout=5
+            )
+        except requests.exceptions.RequestException:
+            pass  # Optionally log this exception
+
 
 # Application definition
 
