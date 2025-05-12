@@ -29,6 +29,7 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
+DISCORD_WEBHOOK_URL = env("DISCORD_WEBHOOK_URL")
 DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")

@@ -10,8 +10,6 @@ import json
 import requests
 import threading
 
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1371602723849371698/wKCrH72wIbLG1iVIjp_l3wE2kj8qn1ZWyZ6r9NIx1wy0WGE3oWs2EyLBkI38kvsnTgWc"
-
 @csrf_exempt
 def forward_log_to_discord(request):
     if request.method == 'POST':
@@ -24,7 +22,7 @@ def forward_log_to_discord(request):
             message = data.get('message', 'No message provided')
 
             payload = {"content": f"[Render Log] {message}"}
-            response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
+            response = requests.post(settings.DISCORD_WEBHOOK_URL, json=payload)
 
             if response.status_code in (200, 204):
                 return JsonResponse({"status": "success"}, status=200)
