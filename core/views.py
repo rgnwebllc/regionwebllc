@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import requests
+import threading
 
 DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1371602723849371698/wKCrH72wIbLG1iVIjp_l3wE2kj8qn1ZWyZ6r9NIx1wy0WGE3oWs2EyLBkI38kvsnTgWc"
 
@@ -35,14 +36,18 @@ def forward_log_to_discord(request):
     return JsonResponse({"error": "Invalid method"}, status=405)
 
 def send_log(message):
-    url = "https://www.regionwebllc.com/log-to-discord/"
-    headers = {
-        "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
-    }
-    try:
-        requests.post(url, json={"message": message}, headers=headers, timeout=5)
-    except requests.exceptions.RequestException:
-        pass
+    def _post():
+        url = "https://www.regionwebllc.com/log-to-discord/"
+        headers = {
+            "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+        }
+        try:
+            requests.post(url, json={"message": message}, headers=headers, timeout=5)
+        except requests.exceptions.RequestException:
+            pass  # optionally log somewhere else
+
+    # Run _post() in the background
+    threading.Thread(target=_post).start()
 
 
 
