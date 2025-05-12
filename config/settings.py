@@ -19,6 +19,7 @@ import dj_database_url
 import logging
 import requests
 from django.conf import settings
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +30,7 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env("SECRET_KEY")
-DISCORD_WEBHOOK_URL = env("DISCORD_WEBHOOK_URL")
+DISCORD_WEBHOOK_URL = config('DISCORD_WEBHOOK_URL')
 DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -53,6 +54,16 @@ class DiscordLogHandler(logging.Handler):
 
 
 # Application definition
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'loggers': {
+        'urllib3.connectionpool': {
+            'level': 'WARNING',  # Suppress DEBUG-level messages
+        },
+    },
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
