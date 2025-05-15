@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Features | Region Web{% endblock %}
+
+{% block content %}
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    #sidebar-wrapper {
+        background-color: #1c1f26;
+        color: #fff;
+        border-right: 1px solid #2d3748;
+    }
+
+    #sidebar-wrapper .nav-link {
+        color: #cbd5e1;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+    }
+
+    #sidebar-wrapper .nav-link.active,
+    #sidebar-wrapper .nav-link:hover {
+        background-color: rgba(56, 189, 248, 0.1);
+        color: #0dcaf0;
+    }
+    #scrollspyNav {
+        margin-top: 5px;
+    }
+    #scrollspyNav li {
+        margin-top: 5px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <aside class="d-none d-md-block col-md-3 col-lg-2 px-0" id="sidebar-wrapper">
+            <div class="position-sticky" style="top: 70px; height: calc(100vh - 70px); overflow-y: auto;">
+                <ul class="nav flex-column px-3" id="scrollspyNav">
+                    <li class="nav-item"><a class="nav-link active" href="#responsive-design">Responsive Design</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#seo-optimization">SEO Optimization</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fast-hosting">Fast Hosting</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#custom-integrations">Custom Integrations</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-5" id="featuresMain">
+            <section id="responsive-design" class="section-spacer">
+                <h1><b>Responsive Design</b></h1>
+                <p>We build mobile-first websites that adapt across devices.</p>
+                <h4>Mobile</h4><hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi sunt quaerat quis adipisci? Dignissimos eligendi fugiat aliquam. Ut ipsum, sint voluptatum rerum aut nulla facilis, atque corrupti ipsam qui debitis! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus, rem officiis ex odit quibusdam autem asperiores. Expedita aut dignissimos beatae commodi at illo odit facilis ex, animi unde enim asperiores.</p><br>
+                <h4>Web</h4><hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum impedit numquam eaque fugiat, aut libero iure? Nihil veniam distinctio corporis eveniet, vel ducimus quibusdam perferendis, dicta at ex magni quisquam! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, delectus distinctio mollitia vero, ratione animi voluptatum sit, reprehenderit consectetur voluptatem quisquam optio porro vitae repellendus veniam natus nesciunt ullam illo!</p><br>
+            </section>
+
+            <section id="seo-optimization" class="section-spacer">
+                <h1><b>SEO Optimization</b></h1>
+                <p>Optimized for Google, Bing, and search rankings.</p>
+                <h4>Google</h4><hr>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque, nulla incidunt, esse dolor officiis architecto dolore ducimus rerum debitis nihil blanditiis, quam ipsum doloribus eos veritatis eaque perferendis sapiente rem! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit fugit inventore temporibus unde nobis consectetur, quibusdam obcaecati fugiat atque dolorem cum officia molestiae voluptatem iure explicabo, necessitatibus nostrum provident? Veritatis?</p><br>
+                <h4>Bing</h4><hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum dolorem deserunt delectus placeat consequatur expedita veritatis et error culpa laudantium, quis, laboriosam temporibus id, fugiat fugit provident tempore eligendi optio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, consequatur! Tempora quibusdam quos quas fugiat obcaecati officiis provident nulla. Delectus accusamus veniam, alias fuga maxime ducimus. Corporis illo culpa molestias!</p><br>
+            </section>
+
+            <section id="fast-hosting" class="section-spacer">
+                <h1><b>Fast Hosting</b></h1>
+                <p>Your site runs on fast, secure, scalable infrastructure.</p>
+                <h4>Render</h4><hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quidem in suscipit natus hic optio laudantium consectetur perspiciatis ullam asperiores, harum placeat explicabo ipsam? Laborum soluta deleniti nam ut officiis. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed, vel unde? Quisquam nesciunt molestiae corrupti omnis officia fuga nam repudiandae facilis, at placeat adipisci a eveniet sapiente nemo molestias accusantium.</p><br>
+            </section>
+
+            <section id="custom-integrations" class="section-spacer">
+                <h1>Custom Integrations</h1>
+                <p>We integrate CRMs, calendars, payments, and more.</p>
+                <h4><b>CRM</b></h4><hr>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur consectetur aspernatur cumque reiciendis. Repudiandae repellendus nulla dolorem. Pariatur, minima maxime distinctio optio nulla accusantium magni, cumque explicabo fugiat recusandae at! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati officia porro soluta rem quod? Molestias, fuga! Voluptatibus saepe neque necessitatibus magni iure fugit, pariatur nostrum possimus beatae est et nisi.</p><br>
+                <h4><b>Calendars</b></h4><hr>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam repudiandae accusamus eligendi, culpa laboriosam libero. Beatae aliquam voluptas cumque non tenetur deleniti, eum, debitis natus, ab consequatur sapiente quos suscipit? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur nemo deserunt similique tenetur veniam doloremque quasi doloribus iste natus, corporis explicabo quidem blanditiis dignissimos deleniti impedit, commodi nesciunt ab officiis?</p><br>
+                <h4><b>Payments</b></h4><hr>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut odio, deleniti delectus natus maxime voluptate ad tenetur! Necessitatibus accusamus distinctio mollitia, aliquam autem unde, tenetur saepe voluptatem cum, modi debitis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore officia rerum velit excepturi explicabo a voluptates eligendi nostrum quaerat consectetur quia error, nisi ipsa non necessitatibus pariatur fuga aut.</p><br>
+                <h4><b>Admin Console</b></h4><hr>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis voluptas consequatur placeat quis quisquam quaerat amet natus harum iusto omnis, quasi reprehenderit sit? Sunt unde ipsum libero. Ipsum, qui sunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit a minus quo similique culpa maiores accusamus cupiditate alias quod rerum expedita mollitia eum pariatur esse vero vitae, magni fugit adipisci?</p><br>
+            </section>
+        </main>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new bootstrap.ScrollSpy(document.body, {
+            target: '#scrollspyNav',
+            offset: 100
+        });
+    });
+</script>
+{% endblock %}

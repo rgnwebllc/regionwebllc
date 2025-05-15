@@ -140,6 +140,9 @@ Details:
 def about_view(request):
     return render(request, 'core/about.html')
 
+def features_view(request):
+    return render(request, 'core/forbidden.html', status=403)
+
 def portfolio_view(request):
     projects = [
         {
@@ -152,13 +155,13 @@ def portfolio_view(request):
             'title': 'Your Website Here',
             'description': 'Contact us today and have your website posted here.',
             'image_url': '/static/images/placeholder.png',
-            'url': '#'
+            'url': ''
         },
         {
             'title': 'Your Website Here',
             'description': "Contact us today and have your website posted here.",
             'image_url': '/static/images/placeholder.png',
-            'url': '#'
+            'url': ''
         },
     ]
     return render(request, 'core/portfolio.html', {'projects': projects})

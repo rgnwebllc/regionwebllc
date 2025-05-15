@@ -261,6 +261,19 @@ blockquote {
     justify-content: space-between !important;
   }
 
+  .card-img-top {
+    height: 200px; /* adjust height as needed */
+    object-fit: cover;
+    width: 100%;
+}
+
+  .img-fluid {
+    height: 220px; /* adjust height as needed */
+    object-fit: fill;
+    width: 100%;
+  }
+
+
   #price-card{
     display: flex !important;
     flex-direction: column !important;
@@ -319,6 +332,7 @@ h2 {
     background-color: #0f172a;
     padding: 10px 20px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1050;
 }
 
 .navbar .nav-link {
@@ -327,7 +341,7 @@ h2 {
 }
 
 .navbar .nav-link:hover {
-    color: #38bdf8;
+    color: #82a1e5;
 }
 
 .logo {
@@ -664,4 +678,11 @@ section {
     to {
         opacity: 1;
     }
+}
+
+/* Sticky Sidebar Fix */
+.sidebar-dark .sticky-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
 }
