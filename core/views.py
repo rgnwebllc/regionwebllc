@@ -16,18 +16,22 @@ def forward_log_to_discord(request):
         token = request.headers.get("Authorization")
         if token != f"Bearer {settings.DISCORD_LOG_TOKEN}":
             return JsonResponse({"error": "Unauthorized"}, status=403)
-        
+
         try:
             data = json.loads(request.body)
-            message = data.get('message', 'No message provided')
+            if "embeds" in data:
+                payload = {"embeds": data["embeds"]}
+            else:
+                message = data.get('message', 'No message provided')
+                payload = {"content": f"[Render Log] {message}"}
 
-            payload = {"content": f"[Render Log] {message}"}
             response = requests.post(settings.DISCORD_WEBHOOK_URL, json=payload)
 
             if response.status_code in (200, 204):
                 return JsonResponse({"status": "success"}, status=200)
             else:
                 return JsonResponse({"error": "Failed to send to Discord"}, status=500)
+
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
 
