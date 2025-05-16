@@ -84,7 +84,7 @@ Message:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! Your message has been sent.")
-            send_log(f"New contact form submission from {name}")
+            send_log(f"New contact form submission from {name}\nEmail: {email}\nPhone Number: {phone}\nMessage:\n{message}")
         except Exception:
             messages.error(request, "❌ Sorry, something went wrong. Please try again.")
 
@@ -128,7 +128,7 @@ Details:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! We'll follow up with you shortly.")
-            send_log(f"New consultation form submission from {name}")
+            send_log(f"New contact form submission from {name}\nEmail: {email}\nBusiness: {business}\Budget:\n{budget}\nDetails:\n{details}")
         except Exception:
             messages.error(request, "❌ Something went wrong. Please try again.")
 
