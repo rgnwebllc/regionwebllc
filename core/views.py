@@ -192,7 +192,7 @@ def about_view(request):
     return render(request, 'core/about.html')
 
 def features_view(request):
-    return render(request, 'core/forbidden.html', status=403)
+    return render(request, 'core/features.html')
 
 def portfolio_view(request):
     projects = [
