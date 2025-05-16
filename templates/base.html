@@ -6,6 +6,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Region Web LLC offers custom website design, hosting, and SEO services for small businesses.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Region Web LLC">
+  <meta property="og:description" content="Custom website design, development, hosting, and SEO solutions for small businesses.">
+  <meta property="og:image" content="https://www.regionwebllc.com/static/images/og.png">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Region Web LLC">
+  <meta name="twitter:description" content="Affordable custom websites built with care.">
+  <meta name="twitter:image" content="https://www.regionwebllc.com/static/images/og.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "inLanguage": "en",
+    "name": "Region Web LLC",
+    "url": "https://www.regionwebllc.com",
+    "logo": "https://www.regionwebllc.com/static/images/IconOnly.png",
+    "description": "Region Web LLC builds custom websites for small businesses.",
+    "telephone": "+1-219-332-7824",
+    "email": "support@regionwebllc.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "IN",
+      "addressCountry": "US"
+    }
+    "sameAs": [
+    "https://www.facebook.com/profile.php?id=61576372221360",
+    ]
+  }
+  </script>
   <title>{% block title %}Region Web LLC{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
