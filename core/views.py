@@ -33,18 +33,65 @@ def forward_log_to_discord(request):
 
     return JsonResponse({"error": "Invalid method"}, status=405)
 
-def send_log(message):
+def send_log_embed(name, email, phone, message):
     def _post():
         url = "https://www.regionwebllc.com/log-to-discord/"
         headers = {
             "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+            "Content-Type": "application/json"
+        }
+        embed = {
+            "embeds": [
+                {
+                    "title": "📬 New Contact Form Submission",
+                    "color": 5763719,
+                    "fields": [
+                        {"name": "Name", "value": name, "inline": True},
+                        {"name": "Email", "value": email, "inline": True},
+                        {"name": "Phone", "value": phone, "inline": True},
+                        {"name": "Message", "value": message or "*No message provided.*"}
+                    ],
+                    "footer": {"text": "Region Web LLC"},
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            ]
         }
         try:
-            requests.post(url, json={"message": message}, headers=headers, timeout=5)
+            requests.post(url, json=embed, headers=headers, timeout=5)
         except requests.exceptions.RequestException:
-            pass  # optionally log somewhere else
+            pass
 
-    # Run _post() in the background
+    threading.Thread(target=_post).start()
+
+def send_consultation_embed(name, email, business, budget, details):
+    def _post():
+        url = "https://www.regionwebllc.com/log-to-discord/"
+        headers = {
+            "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+            "Content-Type": "application/json"
+        }
+        embed = {
+            "embeds": [
+                {
+                    "title": "📝 New Consultation Request",
+                    "color": 3447003,
+                    "fields": [
+                        {"name": "Name", "value": name, "inline": True},
+                        {"name": "Email", "value": email, "inline": True},
+                        {"name": "Business", "value": business, "inline": True},
+                        {"name": "Budget", "value": budget or "N/A", "inline": True},
+                        {"name": "Details", "value": details or "*No details provided.*"}
+                    ],
+                    "footer": {"text": "Region Web LLC"},
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            ]
+        }
+        try:
+            requests.post(url, json=embed, headers=headers, timeout=5)
+        except requests.exceptions.RequestException:
+            pass
+
     threading.Thread(target=_post).start()
 
 
@@ -84,7 +131,7 @@ Message:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! Your message has been sent.")
-            send_log(f"New contact form submission from {name}\nEmail: {email}\nPhone Number: {phone}\nMessage:\n{message}")
+            send_log_embed(name, email, phone, message)
         except Exception:
             messages.error(request, "❌ Sorry, something went wrong. Please try again.")
 
@@ -128,7 +175,7 @@ Details:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! We'll follow up with you shortly.")
-            send_log(f"New contact form submission from {name}\nEmail: {email}\nBusiness: {business}\Budget:\n{budget}\nDetails:\n{details}")
+            send_consultation_embed(name, email, business, budget, details)
         except Exception:
             messages.error(request, "❌ Something went wrong. Please try again.")
 
