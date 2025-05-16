@@ -1,34 +1,33 @@
-# Byte-compiled / optimized / DLL files
+# Python bytecode
 __pycache__/
 *.py[cod]
+*.pyo
 *.so
 
 # Virtual environments
 venv/
-.env/
 .venv/
 
-# Django-related
+# Django
 *.log
 *.pot
 *.pyc
-*.pyo
 db.sqlite3
 instance/
 media/
 staticfiles/
-/staticfiles/
+*.sqlite3
+
+# Environment files
+.env
+sendgrid.env
 
 # VS Code
 .vscode/
 
-# Environment variables
-.env
-
-# Node modules (if using npm/yarn)
+# Node (if used)
 node_modules/
 
-# OS-related
+# macOS and Windows clutter
 .DS_Store
-Thumbs.dbsendgrid.env
-sendgrid.env
+Thumbs.db

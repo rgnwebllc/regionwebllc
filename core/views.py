@@ -9,6 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import requests
 import threading
+from .models import Testimonial
+from .forms import TestimonialForm
 
 @csrf_exempt
 def forward_log_to_discord(request):
@@ -85,6 +87,36 @@ def send_consultation_embed(name, email, business, budget, details):
                         {"name": "Business", "value": business, "inline": True},
                         {"name": "Budget", "value": budget or "N/A", "inline": True},
                         {"name": "Details", "value": details or "*No details provided.*"}
+                    ],
+                    "footer": {"text": "Region Web LLC"},
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            ]
+        }
+        try:
+            requests.post(url, json=embed, headers=headers, timeout=5)
+        except requests.exceptions.RequestException:
+            pass
+
+    threading.Thread(target=_post).start()
+
+def send_testimonial_embed(name, role, company_name, quote):
+    def _post():
+        url = "https://www.regionwebllc.com/log-to-discord/"
+        headers = {
+            "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+            "Content-Type": "application/json"
+        }
+        embed = {
+            "embeds": [
+                {
+                    "title": "🌟 New Testimonial Submitted",
+                    "color": 15844367,  # Gold tone
+                    "fields": [
+                        {"name": "Name", "value": name or "N/A", "inline": True},
+                        {"name": "Role", "value": role or "N/A", "inline": True},
+                        {"name": "Company", "value": company_name or "N/A", "inline": True},
+                        {"name": "Quote", "value": quote or "*No quote provided.*"}
                     ],
                     "footer": {"text": "Region Web LLC"},
                     "timestamp": datetime.utcnow().isoformat()
@@ -217,8 +249,35 @@ def portfolio_view(request):
     ]
     return render(request, 'core/portfolio.html', {'projects': projects})
 
-def testemonials_view(request):
-    return render(request, 'core/forbidden.html', status=403)
+def testimonials_view(request):
+    testimonials = Testimonial.objects.filter(approved=True).order_by('-created_at')
+    form = TestimonialForm()
+
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            testimonial = form.save(commit=False)
+            testimonial.approved = False  # Set to True if no moderation needed
+            testimonial.save()
+            
+            # ⬇️ Log to Discord
+            send_testimonial_embed(
+                testimonial.name,
+                testimonial.role,
+                testimonial.company_name,
+                testimonial.quote
+            )
+
+            messages.success(
+                request,
+                "Thank you for your testimonial. Your submission is pending and will be posted once approved."
+            )
+            return redirect('testimonials')
+
+    return render(request, 'core/testimonials.html', {
+        'testimonials': testimonials,
+        'form': form
+    })
 
 def consultation_view(request):
     return render(request, 'core/pricing.html')

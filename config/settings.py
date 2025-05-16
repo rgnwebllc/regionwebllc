@@ -31,7 +31,15 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env("SECRET_KEY")
 DISCORD_WEBHOOK_URL = env('DISCORD_WEBHOOK_URL')
 DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
-DEBUG = env("DEBUG")
+DEBUG = env.bool("DEBUG", default=False)
+if not DEBUG:
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
@@ -74,6 +82,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'core',
     'accounts',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

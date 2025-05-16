@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Customer Testimonials | Region Web{% endblock %}
+
+{% block content %}
+<style>
+    .testimonial-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .testimonial-name {
+        font-weight: 600;
+        color: #38bdf8;
+        margin-bottom: 0.25rem;
+    }
+
+    .testimonial-role {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        margin-bottom: 0.25rem;
+    }
+
+    .testimonial-company-name{
+        font-size: 0.9rem;
+        color: #94a3b8;
+        margin-bottom: 1rem;
+    }
+
+    .testimonial-quote {
+        font-style: italic;
+        color: #e2e8f0;
+        line-height: 1.6;
+    }
+    @media (max-width: 576px) {
+    .testimonial-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .container.py-5 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    .modal-dialog {
+        margin: 1rem;
+    }
+
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+</style>
+
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+    <div class="alert {{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="container py-5" style="height: 80vh;">
+    <h1 class="mb-4 text-center text-info">What Our Clients Say</h1>
+    <div class="text-center my-4">
+        <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#testimonialModal">
+            Leave a Testimonial
+        </button>
+    </div>
+
+    <!-- Testimonial Submission Form -->
+    <div class="modal fade" id="testimonialModal" tabindex="-1" aria-labelledby="testimonialModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark border-info text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="testimonialModalLabel">Leave a Testimonial</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'testimonials' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
+                                aria-label="Close"></button>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label for="id_name" class="form-label text-light">Full Name *</label>
+                            {{ form.name|add_class:"form-control" }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_role" class="form-label text-light">Your Role</label>
+                            {{ form.role|add_class:"form-control" }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_company_name" class="form-label text-light">Company Name</label>
+                            {{ form.company_name|add_class:"form-control" }}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="id_quote" class="form-label text-light">Testimonial *</label>
+                            {{ form.quote|add_class:"form-control" }}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary w-100">Submit Testimonial</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials List -->
+    <div class="row">
+        {% for testimonial in testimonials %}
+        <div class="col-md-6 col-lg-4">
+            <div class="testimonial-card">
+                <div class="testimonial-name">{{ testimonial.name }}</div>
+                <div class="testimonial-role">{{ testimonial.role }}</div>
+                <div class="testimonial-company-name">{{ testimonial.company_name }}</div>
+                <div class="testimonial-quote">“{{ testimonial.quote }}”</div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-white" style="height: 80vh;">
+            <p>No testimonials yet, but your feedback could be the first!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% if form.errors %}
+<script>
+    const testimonialModal = new bootstrap.Modal(document.getElementById('testimonialModal'));
+    testimonialModal.show();
+</script>
+{% endif %}
+{% endblock %}
