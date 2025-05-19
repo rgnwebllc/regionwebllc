@@ -166,10 +166,15 @@ Message:
             msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
             msg.attach_alternative(html_content, "text/html")
             msg.send()
-            messages.success(request, "✅ Thank you! Your message has been sent.")
+        except Exception as e:
+            print("❌ Email error:", e)
+            messages.error(request, "❌ Email failed. Please try again.")
+            return redirect('/#contact')
+
+        try:
             send_log_embed(name, email, phone, message)
-        except Exception:
-            messages.error(request, "❌ Sorry, something went wrong. Please try again.")
+        except Exception as e:
+            print("⚠️ Discord log error:", e)
 
         return redirect('/#contact')
 
