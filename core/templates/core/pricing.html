@@ -18,6 +18,7 @@
 <div class="container d-flex justify-content-center align-items-center py-5">
   <div class="card bg-dark border-info text-light shadow p-4" style="width: 100%; max-width: 700px;">
     <h3 class="text-center mb-4 text-info">Free Consultation</h3>
+    <p class="text-center mb-4 text-white">Just a conversation. No commitment required, just figuring out if this is for you.</p>
 
     <form method="POST" action="{% url 'consultation-request' %}">
       {% csrf_token %}
