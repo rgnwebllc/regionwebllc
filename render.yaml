@@ -33,3 +33,20 @@ services:
         sync: false
       - key: SENDGRID_API_KEY
         sync: false
+
+  - type: worker
+    name: discord-crm-bot
+    env: python
+    repo: https://github.com/rgnwebllc/regionwebllc.git
+    branch: main
+    buildCommand: |
+      pip install -r requirements.txt
+    startCommand: |
+      python bot.py
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DJANGO_WEBHOOK_URL
+        value: https://www.regionwebllc.com/api/update-lead-status/
+      - key: DISCORD_LOG_TOKEN
+        sync: false

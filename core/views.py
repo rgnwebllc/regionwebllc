@@ -9,8 +9,34 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import requests
 import threading
-from .models import Testimonial
+from .models import *
 from .forms import TestimonialForm
+
+@csrf_exempt
+def update_lead_status(request):
+    if request.method == 'POST':
+        token = request.headers.get("Authorization")
+        if token != f"Bearer {settings.DISCORD_LOG_TOKEN}":
+            return JsonResponse({"error": "Unauthorized"}, status=403)
+
+        try:
+            data = json.loads(request.body)
+            lead_id = data.get("lead_id")
+            new_status = data.get("status")
+
+            if new_status not in dict(Lead.STATUS_CHOICES):
+                return JsonResponse({"error": "Invalid status"}, status=400)
+
+            lead = Lead.objects.get(id=lead_id)
+            lead.status = new_status
+            lead.save()
+            return JsonResponse({"success": True, "message": f"Lead {lead_id} updated to {new_status}"})
+        except Lead.DoesNotExist:
+            return JsonResponse({"error": "Lead not found"}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid method"}, status=405)
 
 @csrf_exempt
 def forward_log_to_discord(request):

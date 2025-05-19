@@ -11,4 +11,5 @@ urlpatterns = [
     path('free-consultation/', views.consultation_view, name='consultation'),
     path('contact/', views.consultation_request, name='consultation-request'),
     path('log-to-discord/', views.forward_log_to_discord, name='log_to_discord'),
+    path("api/update-lead-status/", views.update_lead_status, name="update_lead_status"),
 ]
