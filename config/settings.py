@@ -43,7 +43,7 @@ if not DEBUG:
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
-# ALLOWED_HOSTS = ['10.0.0.8', '127.0.0.1']
+# ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1']
 
 class DiscordLogHandler(logging.Handler):
     def emit(self, record):
