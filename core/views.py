@@ -11,6 +11,8 @@ import requests
 import threading
 from .models import *
 from .forms import TestimonialForm
+from django.db import DatabaseError
+import traceback
 
 @csrf_exempt
 def update_lead_status(request):
@@ -214,49 +216,61 @@ def consultation_request(request):
         budget = request.POST.get('budget')
         details = request.POST.get('details')
 
-        # 🔗 Construct Discord embed
-        embed = {
-            "embeds": [
-                {
-                    "title": "📝 New Consultation Request",
-                    "color": 3447003,
-                    "fields": [
-                        {"name": "Name", "value": name, "inline": True},
-                        {"name": "Email", "value": email, "inline": True},
-                        {"name": "Business", "value": business, "inline": True},
-                        {"name": "Budget", "value": budget or "N/A", "inline": True},
-                        {"name": "Details", "value": details or "*No details provided.*"}
-                    ],
-                    "footer": {"text": "Region Web LLC"},
-                    "timestamp": datetime.utcnow().isoformat()
-                }
-            ]
-        }
-
         discord_message_id = None
-        try:
-            headers = {
-                "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
-                "Content-Type": "application/json"
+
+        def post_to_discord():
+            nonlocal discord_message_id
+            embed = {
+                "embeds": [
+                    {
+                        "title": "📝 New Consultation Request",
+                        "color": 3447003,
+                        "fields": [
+                            {"name": "Name", "value": name, "inline": True},
+                            {"name": "Email", "value": email, "inline": True},
+                            {"name": "Business", "value": business, "inline": True},
+                            {"name": "Budget", "value": budget or "N/A", "inline": True},
+                            {"name": "Details", "value": details or "*No details provided.*"}
+                        ],
+                        "footer": {"text": "Region Web LLC"},
+                        "timestamp": datetime.utcnow().isoformat()
+                    }
+                ]
             }
-            response = requests.post("https://www.regionwebllc.com/log-to-discord/", json=embed, headers=headers)
-            if response.status_code == 200:
-                discord_message_id = response.json().get("id")
+
+            try:
+                headers = {
+                    "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+                    "Content-Type": "application/json"
+                }
+                response = requests.post("https://www.regionwebllc.com/log-to-discord/", json=embed, headers=headers)
+                if response.status_code == 200 and response.headers.get("Content-Type") == "application/json":
+                    response_data = response.json()
+                    discord_message_id = response_data.get("id")
+            except Exception as e:
+                print("⚠️ Discord logging failed:", e)
+                traceback.print_exc()
+
+        threading.Thread(target=post_to_discord).start()
+
+        # 🧾 Save lead (without waiting for message ID, prevents hanging)
+        try:
+            Lead.objects.create(
+                name=name,
+                email=email,
+                business=business,
+                budget=budget,
+                details=details,
+                status='new',
+                discord_message_id=discord_message_id  # likely None, unless handled differently
+            )
         except Exception as e:
-            print("⚠️ Discord logging failed:", e)
+            print("❌ Lead creation error:", e)
+            traceback.print_exc()
+            messages.error(request, "❌ Could not save lead. Please try again later.")
+            return redirect('/free-consultation/#consultation')
 
-        # 🧾 Save lead including Discord message ID
-        Lead.objects.create(
-            name=name,
-            email=email,
-            business=business,
-            budget=budget,
-            details=details,
-            status='new',
-            discord_message_id=discord_message_id
-        )
-
-        # ✉️ Send email
+        # ✉️ Send confirmation email
         subject = f"Free Consultation Request from {name}"
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = [settings.CONTACT_RECEIVER_EMAIL]
@@ -285,7 +299,9 @@ def consultation_request(request):
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! We'll follow up with you shortly.")
-        except Exception:
+        except Exception as e:
+            print("❌ Email error:", e)
+            traceback.print_exc()
             messages.error(request, "❌ Email failed. Please try again.")
 
         return redirect('/free-consultation/#consultation')
