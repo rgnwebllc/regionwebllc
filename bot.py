@@ -1,13 +1,14 @@
-import discord
-import requests
 import os
+import discord
+from discord import Bot  # ✅ Explicit import
+import requests
 
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 DJANGO_WEBHOOK_URL = os.getenv("DJANGO_WEBHOOK_URL")
 API_KEY = os.getenv("DISCORD_LOG_TOKEN")
 
 intents = discord.Intents.default()
-bot = discord.Bot(intents=intents)
+bot = Bot(intents=intents)
 
 @bot.event
 async def on_ready():
@@ -18,12 +19,14 @@ async def lead_status(ctx, lead_id: int, status: str):
     headers = {"Authorization": f"Bearer {API_KEY}"}
     payload = {"lead_id": lead_id, "status": status.lower()}
 
-    response = requests.post(DJANGO_WEBHOOK_URL, json=payload, headers=headers)
-
-    if response.status_code == 200:
-        await ctx.respond(f"✅ Lead {lead_id} updated to `{status}`.")
-    else:
-        await ctx.respond(f"❌ Error: {response.json().get('error')}")
+    try:
+        response = requests.post(DJANGO_WEBHOOK_URL, json=payload, headers=headers)
+        if response.status_code == 200:
+            await ctx.respond(f"✅ Lead {lead_id} updated to `{status}`.")
+        else:
+            await ctx.respond(f"❌ Error: {response.status_code} - {response.text}")
+    except Exception as e:
+        await ctx.respond(f"❌ Request failed: {str(e)}")
 
 print("🎯 Starting bot...")
 bot.run(TOKEN)
