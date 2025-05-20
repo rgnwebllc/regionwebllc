@@ -8,6 +8,6 @@ class TestimonialAdmin(admin.ModelAdmin):
     list_filter = ('approved', 'created_at')
     search_fields = ('name', 'quote')
 
-@admin.register(Lead)
+@admin.register(Lead, site=custom_admin_site)
 class LeadAdmin(admin.ModelAdmin):
     list_display = ('name', 'status', 'created_at')
