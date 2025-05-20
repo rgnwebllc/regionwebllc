@@ -214,6 +214,15 @@ def consultation_request(request):
         budget = request.POST.get('budget')
         details = request.POST.get('details')
 
+        Lead.objects.create(
+            name=name,
+            email=email,
+            business=business,
+            budget=budget,
+            details=details,
+            status='new'
+        )
+
         subject = f"Free Consultation Request from {name}"
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = [settings.CONTACT_RECEIVER_EMAIL]

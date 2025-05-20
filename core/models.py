@@ -22,7 +22,9 @@ class Lead(models.Model):
 
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    phone = models.CharField(max_length=20, blank=True)
+    business = models.CharField(max_length=100, blank=True)
+    budget = models.CharField(max_length=100, blank=True)
+    details = models.TextField(blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
     discord_message_id = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

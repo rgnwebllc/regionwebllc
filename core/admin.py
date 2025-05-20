@@ -10,4 +10,5 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(Lead, site=custom_admin_site)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ('name', 'status', 'created_at')
+    list_display = ('name', 'email', 'status', 'created_at')
+    search_fields = ('name', 'email', 'business')
