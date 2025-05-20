@@ -36,6 +36,21 @@ body {
   font-size: 1rem;
 }
 
+.js-cool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 5rem;
+}
+
+.js-cool-heading {
+  color: #eee;
+  font-size: 5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 .form-label {
   text-align: left;
   display: block;
@@ -401,7 +416,7 @@ h2 {
 }
 
 /* ---- Hero ---- */
-.hero {
+/* .hero {
   background: linear-gradient(rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.7)),
     url('/static/images/hero.jpg') no-repeat center center/cover;
   display: flex;
@@ -412,6 +427,81 @@ h2 {
   color: #f1f5f9;
   padding: 4rem 1rem;
 }
+
+.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+} */
+
+/* Hero Section */
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  color: #f1f5f9;
+  padding: 4rem 1rem;
+  min-height: 100dvh; /* Better for mobile viewport */
+  overflow: hidden;
+}
+
+/* Background Video */
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.5;
+  pointer-events: none; /* Prevent blocking interactions */
+}
+
+.hero .z-1 {
+  position: relative;
+  z-index: 1;
+}
+
+
+@media (max-width: 768px) {
+  .hero {
+    height: 100vh;
+    padding: 3rem 1rem;
+  }
+
+  .bg-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    transform: translate(-50%, -50%) scale(1.15); /* Slight zoom-out on mobile */
+  }
+
+  #we-build {
+    font-size: 1.75rem;
+  }
+
+  .hero p.lead {
+    font-size: 1rem;
+  }
+
+  .hero .btn {
+    font-size: 1rem;
+  }
+}
+
 
 .hero p.lead {
   font-size: 0.875rem;

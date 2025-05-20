@@ -23,19 +23,16 @@ from django.conf import settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-def getEnv():
-    env = environ.Env(
-    DEBUG=(bool, False)
-    )
-    environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-    return env
+from .settings_funcs import *
 
-env = getEnv()
+env = getEnv(BASE_DIR)
 
 SECRET_KEY = env("SECRET_KEY")
 DISCORD_WEBHOOK_URL = env('DISCORD_WEBHOOK_URL')
 DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
 DEBUG = env.bool("DEBUG", default=False)
+
+debug_message(DEBUG)
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -47,7 +44,7 @@ if not DEBUG:
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
-# ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1']
+# ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1', '10.0.0.207', 'localhost']
 
 class DiscordLogHandler(logging.Handler):
     def emit(self, record):

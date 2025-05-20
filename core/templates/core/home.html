@@ -4,9 +4,17 @@
 {% block title %}Region Web{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<header class="hero d-flex align-items-center justify-content-center text-center text-white">
-    <div data-aos="fade-in" data-aos-duration="1500" data-aos-easing="ease-in">
+<!-- Hero Section With Background Video -->
+<header class="hero d-flex align-items-center justify-content-center text-center text-white position-relative overflow-hidden">
+
+    <!-- Background Video -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/hero-background.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay Content -->
+    <div class="position-relative z-1" data-aos="fade-in" data-aos-duration="1500" data-aos-easing="ease-in">
         <h1 id="we-build" class="display-4">We Build Websites That Work</h1>
         <p class="lead">Custom, mobile-friendly designs tailored to your business.</p>
         <a href="#contact" class="btn btn-outline-light mt-3">Contact Us</a>
