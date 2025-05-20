@@ -2,10 +2,11 @@ import os
 import discord
 from discord import Bot  # ✅ Explicit import
 import requests
+from django.conf import settings as v
 
-TOKEN = os.getenv("DISCORD_BOT_TOKEN")
-DJANGO_WEBHOOK_URL = os.getenv("DJANGO_WEBHOOK_URL")
-API_KEY = os.getenv("DISCORD_LOG_TOKEN")
+TOKEN = v.env("DISCORD_BOT_TOKEN")
+DJANGO_WEBHOOK_URL = v.env("DJANGO_WEBHOOK_URL")
+API_KEY = v.env("DISCORD_LOG_TOKEN")
 
 intents = discord.Intents.default()
 bot = Bot(intents=intents)
