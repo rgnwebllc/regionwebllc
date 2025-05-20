@@ -25,4 +25,5 @@ async def lead_status(ctx, lead_id: int, status: str):
     else:
         await ctx.respond(f"❌ Error: {response.json().get('error')}")
 
+print("🎯 Starting bot...")
 bot.run(TOKEN)
