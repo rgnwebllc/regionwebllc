@@ -23,15 +23,17 @@ from django.conf import settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env(
+def getEnv():
+    env = environ.Env(
     DEBUG=(bool, False)
 )
+    return env
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-SECRET_KEY = env("SECRET_KEY")
-DISCORD_WEBHOOK_URL = env('DISCORD_WEBHOOK_URL')
-DISCORD_LOG_TOKEN = env('DISCORD_LOG_TOKEN')
-DEBUG = env.bool("DEBUG", default=False)
+SECRET_KEY = getEnv("SECRET_KEY")
+DISCORD_WEBHOOK_URL = getEnv('DISCORD_WEBHOOK_URL')
+DISCORD_LOG_TOKEN = getEnv('DISCORD_LOG_TOKEN')
+DEBUG = getEnv.bool("DEBUG", default=False)
 if not DEBUG:
     SECURE_HSTS_SECONDS = 31536000  # 1 year
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
@@ -40,7 +42,7 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = getEnv.list("ALLOWED_HOSTS")
 
 #Development Hosts
 # ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1']
@@ -120,7 +122,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASE_URL = env("DATABASE_URL", default=None)
+DATABASE_URL = getEnv("DATABASE_URL", default=None)
 
 if DATABASE_URL:
     import dj_database_url
