@@ -214,27 +214,61 @@ def consultation_request(request):
         budget = request.POST.get('budget')
         details = request.POST.get('details')
 
+        # 🔗 Construct Discord embed
+        embed = {
+            "embeds": [
+                {
+                    "title": "📝 New Consultation Request",
+                    "color": 3447003,
+                    "fields": [
+                        {"name": "Name", "value": name, "inline": True},
+                        {"name": "Email", "value": email, "inline": True},
+                        {"name": "Business", "value": business, "inline": True},
+                        {"name": "Budget", "value": budget or "N/A", "inline": True},
+                        {"name": "Details", "value": details or "*No details provided.*"}
+                    ],
+                    "footer": {"text": "Region Web LLC"},
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            ]
+        }
+
+        discord_message_id = None
+        try:
+            headers = {
+                "Authorization": f"Bearer {settings.DISCORD_LOG_TOKEN}",
+                "Content-Type": "application/json"
+            }
+            response = requests.post("https://www.regionwebllc.com/log-to-discord/", json=embed, headers=headers)
+            if response.status_code == 200:
+                discord_message_id = response.json().get("id")
+        except Exception as e:
+            print("⚠️ Discord logging failed:", e)
+
+        # 🧾 Save lead including Discord message ID
         Lead.objects.create(
             name=name,
             email=email,
             business=business,
             budget=budget,
             details=details,
-            status='new'
+            status='new',
+            discord_message_id=discord_message_id
         )
 
+        # ✉️ Send email
         subject = f"Free Consultation Request from {name}"
         from_email = settings.DEFAULT_FROM_EMAIL
         to_email = [settings.CONTACT_RECEIVER_EMAIL]
 
         text_content = f"""
-Name: {name}
-Email: {email}
-Business: {business}
-Budget: {budget}
+        Name: {name}
+        Email: {email}
+        Business: {business}
+        Budget: {budget}
 
-Details:
-{details}
+        Details:
+        {details}
         """
 
         html_content = render_to_string('emails/consultation_email.html', {
@@ -251,13 +285,13 @@ Details:
             msg.attach_alternative(html_content, "text/html")
             msg.send()
             messages.success(request, "✅ Thank you! We'll follow up with you shortly.")
-            send_consultation_embed(name, email, business, budget, details)
         except Exception:
-            messages.error(request, "❌ Something went wrong. Please try again.")
+            messages.error(request, "❌ Email failed. Please try again.")
 
         return redirect('/free-consultation/#consultation')
 
     return render(request, 'core/home.html', {'year': datetime.now().year})
+
 
 
 def about_view(request):

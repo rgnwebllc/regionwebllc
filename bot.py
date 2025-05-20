@@ -16,6 +16,7 @@ async def on_ready():
 
 @bot.slash_command(name="lead", description="Update a lead's status")
 async def lead_status(ctx, lead_id: int, status: str):
+    print("🔐 Sending token:", API_KEY)
     headers = {"Authorization": f"Bearer {API_KEY}"}
     payload = {"lead_id": lead_id, "status": status.lower()}
 
