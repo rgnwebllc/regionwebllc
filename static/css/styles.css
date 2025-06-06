@@ -755,7 +755,7 @@ section {
 .footer-bg {
   width: 100%;
   margin: 0;
-  padding: 4rem 1rem;
+  padding: 0;
 }
 
 .our-work-bg {
@@ -792,6 +792,62 @@ section {
   color: #38bdf8;
 }
 
+.site-footer {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+.site-footer h5,
+.site-footer h6 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  color: #f1f5f9;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: #f6bd60; /* Hunyadi Yellow from your palette */
+  text-decoration: underline;
+}
+
+.site-footer hr {
+  border-color: #334155;
+}
+
+.site-footer i {
+  transition: transform 0.3s ease;
+}
+
+.site-footer i:hover {
+  transform: scale(1.2);
+}
+
+.site-footer input,
+.site-footer textarea {
+  background-color: #1f2937; /* Match dark theme */
+  border: 1px solid #334155;
+  color: #f8f9fa;
+}
+
+.site-footer input::placeholder,
+.site-footer textarea::placeholder {
+  color: #94a3b8;
+}
+
+.site-footer input:focus,
+.site-footer textarea:focus {
+  border-color: #f6bd60;
+  box-shadow: none;
+  background-color: #1e293b;
+  color: #f8f9fa;
+}
+
 /* ---- AOS fallback ---- */
 .fade-in {
   opacity: 0;
@@ -810,4 +866,60 @@ section {
   position: -webkit-sticky;
   position: sticky;
   top: 100px;
+}
+
+/* --- About Page Enhancements --- */
+
+.about-block {
+  margin-bottom: 3rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.about-block h5 {
+  color: #f6bd60; /* Hunyadi Yellow */
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.about-block p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.about-block ul li {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.about-block .btn-primary {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: none;
+}
+
+.about-block .btn-primary:hover {
+  background-color: #0ea5e9;
+  color: #ffffff;
+}
+
+/* Optional: Add divider line style between sections */
+.about-block + .about-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.founder-photo {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  border: 3px solid #f6bd60; /* Optional border to help it stand out */
+}
+
+@media (max-width: 768px) {
+  .founder-photo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }

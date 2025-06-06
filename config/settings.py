@@ -41,10 +41,10 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 #Development Hosts
-# ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1', '10.0.0.207', 'localhost']
+ALLOWED_HOSTS = ['10.0.0.7', '127.0.0.1', '10.0.0.207', 'localhost', '10.0.0.206']
 
 class DiscordLogHandler(logging.Handler):
     def emit(self, record):

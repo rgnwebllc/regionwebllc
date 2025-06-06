@@ -5,115 +5,121 @@
 
 {% block content %}
 <section class="our-work-section">
-    <div class="our-work-bg">
-        <div class="container d-flex flex-column" id="home-cont">
-            <h2 class="mb-3" data-aos="fade-in" data-aos-duration="1500">About Region Web LLC</h2>
-            <p class="mb-4" data-aos="fade-in" data-aos-delay="200">
-                Region Web LLC is a custom website design and development company dedicated to helping small businesses
-                establish and grow their online presence. Founded with a passion for modern design and functional web
-                solutions, we specialize in responsive layouts, intuitive user experiences, and ongoing support tailored
-                to your brand's vision.
-            </p>
+  <div class="our-work-bg">
+    <div class="container d-flex flex-column" id="home-cont">
+      <h2 class="mb-3" data-aos="fade-in" data-aos-duration="1500">About Region Web LLC</h2>
+      <p class="mb-4" data-aos="fade-in" data-aos-delay="200">
+        Region Web LLC is a custom website design and development company dedicated to helping small businesses
+        establish and grow their online presence. Founded with a passion for modern design and functional web
+        solutions, we specialize in responsive layouts, intuitive user experiences, and ongoing support tailored
+        to your brand's vision.
+      </p>
 
-            <!-- Founder -->
-            <div id="about-row" class="row align-items-center my-5" data-aos="fade-up" data-aos-delay="250">
-                <div class="col-md-4 text-center mb-3">
-                    <img src="{% static 'images/founder.jpg' %}" class="img-fluid rounded-circle shadow"
-                        alt="Founder Photo" style="max-width: 200px;" id="founderphoto">
-                </div>
-                <div class="col-md-8">
-                    <h5>Meet the Founder</h5>
-                    <p>
-                        Hi, I'm Anthony Ryan, the founder of Region Web LLC. What started as a passion for coding in high
-                        school evolved into a full-time dedication to helping businesses succeed online. Every line of
-                        code and pixel of design reflects our commitment to quality and care.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Core Values -->
-            <div id="about-row" class="row mb-5" data-aos="fade-up" data-aos-delay="300">
-                <div class="col-12">
-                    <h5>Our Core Values</h5>
-                    <ul class="list-unstyled ps-3">
-                        <li>✔️ <strong>Integrity</strong> – We do what’s right, not what’s easy.</li>
-                        <li>✔️ <strong>Transparency</strong> – Clear and open communication at every step.</li>
-                        <li>✔️ <strong>Innovation</strong> – We stay ahead by leveraging modern technologies.</li>
-                        <li>✔️ <strong>Customer Focus</strong> – Your goals shape everything we do.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Services Summary -->
-            <div id="about-row" class="row">
-                <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="350">
-                    <h5>What We Do</h5>
-                    <p>
-                        From simple landing pages to full-featured eCommerce stores, we build websites that are not only
-                        beautiful but also optimized for performance, SEO, and scalability. We listen, strategize, and
-                        deliver.
-                    </p>
-                </div>
-                <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="400">
-                    <h5>Why Choose Us?</h5>
-                    <p>
-                        We treat every project as a partnership. Our focus is on clarity, responsiveness, and long-term
-                        value. We use modern technologies and thoughtful design to create sites that engage and convert.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Timeline -->
-            <div id="about-row" class="row mb-5" data-aos="fade-up" data-aos-delay="450">
-                <div class="col-12">
-                    <h5>Our Journey</h5>
-                    <p><strong>2025:</strong> Founded on May 06, 2025.</p>
-                    <p><strong>Looking Ahead:</strong> Focused on automation, performance, and scalable design systems. We look forward to working with you.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Testimonials -->
-            <!-- <div id="about-row" class="row mb-3" data-aos="fade-in" data-aos-delay="500">
-                <div class="col-12">
-                    <h5>What Our Clients Say</h5>
-                    <blockquote class="blockquote">
-                        <p class="mb-0">“RegionWeb gave my business a professional web presence that actually brought in
-                            leads. They're responsive, talented, and transparent.”</p>
-                        <footer class="blockquote-footer text-light mt-2">— Small Business Owner, Indiana</footer>
-                    </blockquote>
-                    <a href="#" class="btn btn-primary mt-3" data-aos="fade-in" data-aos-delay="500">Get in Touch</a>
-                </div>
-            </div> -->
-
-            <hr class="my-5">
-
-            <div id="about-row" class="row text-center" data-aos="fade-in" data-aos-delay="100">
-                <div class="col-6 col-md-3 mb-4">
-                    <img src="/static/icons/custom.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
-                    <h6>Custom Design</h6>
-                    <p class="small">Unique layouts tailored to your brand.</p>
-                </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <img src="/static/icons/code.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
-                    <h6>Clean Code</h6>
-                    <p class="small">Built for speed, security, and scalability.</p>
-                </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <img src="/static/icons/seo.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
-                    <h6>SEO Optimized</h6>
-                    <p class="small">Get found easily on Google and Bing.</p>
-                </div>
-                <div class="col-6 col-md-3 mb-4">
-                    <img src="/static/icons/support.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
-                    <h6>Ongoing Support</h6>
-                    <p class="small">We’ve got your back—before and after launch.</p>
-                </div>
-            </div>
-
+      <!-- Founder Block -->
+      <div class="about-block row align-items-center my-5" data-aos="fade-up" data-aos-delay="250">
+        <div class="col-md-4 text-center mb-3">
+          <img src="{% static 'images/founder.jpg' %}" alt="Founder Photo"
+     class="founder-photo img-fluid rounded-circle shadow mx-auto d-block">
 
         </div>
-    </div>
-</section>
+        <div class="col-md-8">
+          <h5>Meet the Founder</h5>
+          <p>
+            Hi, I'm Anthony Ryan — designer, developer, and founder of Region Web LLC. This company began with a
+            simple mission: help small businesses look professional and perform competitively online. With every project,
+            I bring technical skill, transparency, and a commitment to quality.
+          </p>
+        </div>
+      </div>
 
+      <!-- Core Values -->
+      <div class="about-block row mb-5" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-12">
+          <h5>Our Core Values</h5>
+          <ul class="list-unstyled ps-3">
+            <li>✔️ <strong>Integrity</strong> – We do what’s right, not what’s easy.</li>
+            <li>✔️ <strong>Transparency</strong> – Clear and open communication at every step.</li>
+            <li>✔️ <strong>Innovation</strong> – We stay ahead by leveraging modern technologies.</li>
+            <li>✔️ <strong>Customer Focus</strong> – Your goals shape everything we do.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- What We Do + Why Choose Us -->
+      <div class="about-block row">
+        <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="350">
+          <h5>What We Do</h5>
+          <p>
+            From simple landing pages to full-featured eCommerce stores, we build websites that are not only
+            beautiful but also optimized for performance, SEO, and scalability. We listen, strategize, and
+            deliver.
+          </p>
+        </div>
+        <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="400">
+          <h5>Why Choose Us?</h5>
+          <p>
+            We treat every project as a partnership. Our focus is on clarity, responsiveness, and long-term
+            value. We use modern technologies and thoughtful design to create sites that engage and convert.
+          </p>
+        </div>
+      </div>
+
+      <!-- Differentiator -->
+      <div class="about-block row mb-5" data-aos="fade-up" data-aos-delay="450">
+        <div class="col-12">
+          <h5>What Makes Us Different</h5>
+          <p>
+            We don’t just build websites — we build long-term partnerships. From initial strategy to post-launch support,
+            Region Web LLC is your reliable digital partner. We speak your language, respond fast, and never leave you in the dark.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="about-block row mb-5" data-aos="fade-up" data-aos-delay="500">
+        <div class="col-12">
+          <h5>Our Journey</h5>
+          <p><strong>2025:</strong> Founded on May 06, 2025.</p>
+          <p><strong>Looking Ahead:</strong> Focused on automation, performance, and scalable design systems. We look forward to working with you.</p>
+        </div>
+      </div>
+
+      <hr class="my-5">
+
+      <!-- Icons -->
+      <div class="about-block row text-center" data-aos="fade-in" data-aos-delay="100">
+        <div class="col-6 col-md-3 mb-4">
+          <img src="/static/icons/custom.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
+          <h6>Custom Design</h6>
+          <p class="small">Unique layouts tailored to your brand.</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <img src="/static/icons/code.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
+          <h6>Clean Code</h6>
+          <p class="small">Built for speed, security, and scalability.</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <img src="/static/icons/seo.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
+          <h6>SEO Optimized</h6>
+          <p class="small">Get found easily on Google and Bing.</p>
+        </div>
+        <div class="col-6 col-md-3 mb-4">
+          <img src="/static/icons/support.svg" alt="Design Icon" class="mb-2 mx-auto d-block" style="width: 50px;">
+          <h6>Ongoing Support</h6>
+          <p class="small">We’ve got your back—before and after launch.</p>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="about-block row mt-5 text-center" data-aos="fade-up" data-aos-delay="500">
+        <div class="col-12">
+          <h5>Let’s Build Something Great Together</h5>
+          <p class="mb-4">Whether you're launching a new business or refreshing your current site, we’re ready to help.</p>
+          <a href="{% url 'consultation' %}" class="btn btn-primary">Book a Free Consultation</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 {% endblock %}
